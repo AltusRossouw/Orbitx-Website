@@ -12,7 +12,7 @@ module.exports = {
         foreground: 'var(--foreground)',
         'orbitx-blue': '#0066cc',
   'orbitx-dark-blue': '#004499',
-  'orbitx-accent': '#004193',
+  'orbitx-accent': '#0084ff',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
