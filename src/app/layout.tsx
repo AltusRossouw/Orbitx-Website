@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     siteName: 'OrbitX LED Lights',
     images: [
       {
-        url: '/images/orbitx-logo.svg',
-        width: 426,
-        height: 100,
-        alt: 'OrbitX Logo - Direct Drive LED Lights',
+        url: '/images/orbitx-social.png',
+        width: 1200,
+        height: 630,
+        alt: 'OrbitX - Direct Drive LED Lighting Solutions',
       },
     ],
     locale: 'en_ZA',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'OrbitX - Direct Drive LED Lights',
     description: 'Cutting-edge Direct Drive LED lighting solutions for industrial, commercial, and mining applications.',
-    images: ['/images/orbitx-logo.svg'],
+    images: ['/images/orbitx-social.png'],
   },
   
   // Additional meta tags
@@ -56,11 +56,11 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         {/* Additional meta tags for better WhatsApp sharing */}
-        <meta property="og:image" content="/images/orbitx-logo.svg" />
-        <meta property="og:image:type" content="image/svg+xml" />
-        <meta property="og:image:width" content="426" />
-        <meta property="og:image:height" content="100" />
-        <meta property="og:image:alt" content="OrbitX Logo - Direct Drive LED Lights" />
+        <meta property="og:image" content="/images/orbitx-social.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="OrbitX - Direct Drive LED Lighting Solutions" />
         
         {/* WhatsApp specific meta tags */}
         <meta property="og:site_name" content="OrbitX LED Lights" />
