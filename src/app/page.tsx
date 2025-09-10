@@ -20,7 +20,7 @@ import {
   Download,
   ExternalLink
 } from 'lucide-react'
-import { products, clientImages, companyAssets } from '../data/products'
+import { clientImages, companyAssets } from '../data/products'
 
 // Components
 // Helper to convert SA numbers like "021 879 1483" or "071 581 5751" to tel:+27... format
