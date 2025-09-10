@@ -689,7 +689,14 @@ const Footer = () => {
             </p>
             <div className="flex items-center text-sm text-gray-500">
               <Award size={16} className="mr-2" />
-              SABS approved
+              <a
+                href="https://www.sabs.co.za"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-orbitx-accent underline-offset-2 hover:underline"
+              >
+                SABS approved
+              </a>
             </div>
           </div>
           
