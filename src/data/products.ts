@@ -177,5 +177,7 @@ export const clientImages = [
 
 export const companyAssets = {
   mainBrochure: "/pdfs/orbitx-brochure-2024-with-play-button-fr.pdf",
-  guaranteeDocument: "/pdfs/orbitx-direct-drive-led-guarantee-2024.pdf"
+  guaranteeDocument: "/pdfs/orbitx-direct-drive-led-guarantee-2025.pdf",
+  brandGuideline: "/pdfs/orbitx-brand-guideline.pdf",
+  blueMemo: "/pdfs/orbitx-blue-memo.pdf"
 }

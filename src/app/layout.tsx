@@ -1,8 +1,17 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const realHeadPro = localFont({
+  src: [
+    { path: '../fonts/real-head-pro/RealHeadPro-Light.otf', weight: '300', style: 'normal' },
+    { path: '../fonts/real-head-pro/RealHeadPro-Semilight.otf', weight: '350', style: 'normal' },
+    { path: '../fonts/real-head-pro/RealHeadPro-Medium.otf', weight: '500', style: 'normal' },
+    { path: '../fonts/real-head-pro/RealHeadPro-Bold.otf', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-real-head-pro',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://orbitx.co.za'),
@@ -53,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+  <html lang="en" className="dark">
       <head>
         {/* Additional meta tags for better WhatsApp sharing */}
         <meta property="og:image" content="/images/orbitx-social.png" />
@@ -70,7 +79,7 @@ export default function RootLayout({
         <link rel="icon" href="/images/orbitx-logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/orbitx-logo.svg" />
       </head>
-      <body className={`${inter.className} bg-black text-white`}>
+  <body className={`${realHeadPro.variable} bg-black text-white`}>
         {children}
       </body>
     </html>
