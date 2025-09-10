@@ -9,9 +9,9 @@ import { team } from '@/data/team'
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
-      <main>
+      <main className="flex-1">
         {/* Hero */}
         <section className="relative py-20 bg-gray-900 overflow-hidden">
           {/* Animated Background (matches Home hero spotlight) */}
@@ -92,7 +92,7 @@ export default function TeamPage() {
             <Link href="/#contact" className="px-6 py-3 bg-orbitx-accent text-black font-semibold rounded-lg hover:bg-white transition">Get in touch</Link>
           </div>
         </section>
-      </main>
+  </main>
 
       {/* Footer (reuse from home via copy for now) */}
       <footer className="bg-gray-900 border-t border-gray-800 py-12">

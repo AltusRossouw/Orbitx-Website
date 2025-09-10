@@ -580,9 +580,9 @@ const Footer = () => {
 // Main App Component
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
-      <main>
+      <main className="flex-1">
         <Hero />
         <Features />
   {/* Products moved to /products */}

@@ -18,10 +18,10 @@ const toTelHref = (display: string) => {
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
-  <Header />
+    <div className="min-h-screen bg-black text-white flex flex-col">
+      <Header />
 
-      <main>
+      <main className="flex-1">
         {/* Hero */}
         <section className="relative py-20 bg-gray-900 overflow-hidden">
           {/* Animated Background (matches Home hero spotlight) */}
@@ -145,7 +145,7 @@ export default function ProductsPage() {
             </motion.div>
           </div>
         </section>
-      </main>
+  </main>
       {/* Footer copied from home page for consistency */}
       <footer className="bg-gray-900 border-t border-gray-800 py-12">
         <div className="container mx-auto px-6">
