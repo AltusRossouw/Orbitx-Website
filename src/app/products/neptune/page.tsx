@@ -164,7 +164,6 @@ export default function NeptuneProductPage() {
                 />
               </div>
             </div>
-            <p className="text-gray-500 text-xs mt-2">Image background is transparent to blend with the site theme.</p>
           </div>
         </section>
 
@@ -172,7 +171,6 @@ export default function NeptuneProductPage() {
   <section id="graphs" className="py-12 bg-gray-900">
           <div className="container mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Graphs</h2>
-            <p className="text-gray-400 mb-8">Visualizations derived from the Neptune specification data.</p>
 
             <div className="grid lg:grid-cols-2 gap-8">
               {/* 1. Light Survival Rate Curve */}
