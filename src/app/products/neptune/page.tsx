@@ -85,57 +85,10 @@ export default function NeptuneProductPage() {
           </div>
         </section>
 
-        {/* Configurations & Performance */}
-        <section className="py-12 bg-black">
-          <div className="container mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Configurations & Performance</h2>
-            <div className="overflow-x-auto rounded-xl border border-gray-800">
-              <table className="min-w-full bg-gray-900 text-sm">
-                <thead className="bg-gray-800 text-gray-300">
-                  <tr>
-                    <th className="text-left p-3 font-semibold">Length</th>
-                    <th className="text-center p-3 font-semibold">Power (W)</th>
-                    <th className="text-center p-3 font-semibold">Luminous Flux (lm)</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-800">
-                  {[
-                    ['600 mm', '9', '1000'],
-                    ['', '18', '2000'],
-                    ['', '27', '3000'],
-                    ['', '36', '4000'],
-                    ['', '45', '5000'],
-                    ['1200 mm', '16', '2000'],
-                    ['', '32', '4000'],
-                    ['', '48', '6000'],
-                    ['', '64', '8000'],
-                    ['', '80', '10000'],
-                    ['1200 mm*', '96', '12000'],
-                    ['', '112', '15000'],
-                    ['', '128', '17000'],
-                    ['1500 mm', '19', '2200'],
-                    ['', '38', '4400'],
-                    ['', '57', '6600'],
-                    ['', '76', '8800'],
-                    ['2400 mm', '32', '4000'],
-                    ['', '64', '8000'],
-                    ['', '96', '12000']
-                  ].map((row, i) => (
-                    <tr key={i} className="text-gray-300">
-                      <td className="p-3">{row[0]}</td>
-                      <td className="p-3 text-center">{row[1]}</td>
-                      <td className="p-3 text-center">{row[2]}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-gray-500 text-xs mt-2">* Indicates the Neptune Supersize housing.</p>
-          </div>
-        </section>
+        
 
         {/* Specs Sections */}
-        <section className="py-12 bg-gray-900">
+        <section className="py-12 bg-black">
           <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-10">
             <div className="space-y-6">
               <SpecCard title="Guarantee & Lifetime" items={[
@@ -197,10 +150,10 @@ export default function NeptuneProductPage() {
         </section>
 
         {/* Dimensions (transparent background image) */}
-        <section className="py-12 bg-black">
+        <section className="py-12 bg-gray-900">
           <div className="container mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Dimensions</h2>
-            <div className="relative rounded-xl border border-gray-800 bg-black/40 overflow-hidden">
+            <div className="relative rounded-xl border border-gray-800 bg-black overflow-hidden">
               <div className="relative w-full h-72 md:h-96">
                 <Image
                   src="/products/neptune/images/neptune-dimensions.png"
@@ -216,7 +169,7 @@ export default function NeptuneProductPage() {
         </section>
 
         {/* Graphs */}
-        <section id="graphs" className="py-12 bg-black">
+  <section id="graphs" className="py-12 bg-gray-900">
           <div className="container mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Graphs</h2>
             <p className="text-gray-400 mb-8">Visualizations derived from the Neptune specification data.</p>
@@ -245,6 +198,55 @@ export default function NeptuneProductPage() {
                 <SPD />
               </GraphCard>
             </div>
+          </div>
+        </section>
+
+        {/* Configurations & Performance */}
+        <section className="py-12 bg-black">
+          <div className="container mx-auto px-6">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">Configurations & Performance</h2>
+            <div className="overflow-x-auto rounded-xl border border-gray-800">
+              <table className="min-w-full bg-gray-900 text-sm">
+                <thead className="bg-gray-800 text-gray-300">
+                  <tr>
+                    <th className="text-left p-3 font-semibold">Length</th>
+                    <th className="text-center p-3 font-semibold">Power (W)</th>
+                    <th className="text-center p-3 font-semibold">Luminous Flux (lm)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-800">
+                  {[
+                    ['600 mm', '9', '1000'],
+                    ['', '18', '2000'],
+                    ['', '27', '3000'],
+                    ['', '36', '4000'],
+                    ['', '45', '5000'],
+                    ['1200 mm', '16', '2000'],
+                    ['', '32', '4000'],
+                    ['', '48', '6000'],
+                    ['', '64', '8000'],
+                    ['', '80', '10000'],
+                    ['1200 mm*', '96', '12000'],
+                    ['', '112', '15000'],
+                    ['', '128', '17000'],
+                    ['1500 mm', '19', '2200'],
+                    ['', '38', '4400'],
+                    ['', '57', '6600'],
+                    ['', '76', '8800'],
+                    ['2400 mm', '32', '4000'],
+                    ['', '64', '8000'],
+                    ['', '96', '12000']
+                  ].map((row, i) => (
+                    <tr key={i} className="text-gray-300">
+                      <td className="p-3">{row[0]}</td>
+                      <td className="p-3 text-center">{row[1]}</td>
+                      <td className="p-3 text-center">{row[2]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-gray-500 text-xs mt-2">* Indicates the Neptune Supersize housing.</p>
           </div>
         </section>
 
@@ -397,7 +399,7 @@ function SpecCard({ title, items }: { title: string, items: string[] }) {
 
 function GraphCard({ id, title, subtitle, children }: { id: string, title: string, subtitle?: string, children: React.ReactNode }) {
   return (
-    <div id={id} className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+    <div id={id} className="bg-black border border-gray-800 rounded-xl p-5">
       <h3 className="text-lg font-semibold mb-1">{title}</h3>
       {subtitle && <p className="text-gray-400 text-sm mb-4">{subtitle}</p>}
       <div className="w-full overflow-hidden">
@@ -522,17 +524,38 @@ function SPD() {
   // dip near 485 nm, then a broad green/yellow hump peaking ~0.6 around 560–600 nm,
   // tapering into the red region.
   const data = [
-    [360,0.00],[380,0.00],[400,0.02],[420,0.08],[440,0.35],[455,1.00],[470,0.70],[485,0.30],
-    [500,0.45],[520,0.55],[540,0.58],[560,0.60],[580,0.58],[600,0.56],[610,0.55],[630,0.42],
-    [650,0.28],[670,0.18],[690,0.10],[710,0.04],[735,0.00]
+    [360,0.00],[370,0.00],[380,0.00],[390,0.01],[400,0.02],[410,0.05],[420,0.09],[430,0.20],
+    [440,0.40],[445,0.70],[452,0.95],[455,1.00],[458,0.92],[465,0.80],[475,0.55],[480,0.38],
+    [485,0.30],[490,0.35],[500,0.45],[510,0.50],[520,0.55],[530,0.57],[540,0.58],[550,0.59],
+    [560,0.60],[570,0.60],[580,0.59],[590,0.58],[600,0.56],[610,0.52],[620,0.45],[630,0.38],
+    [640,0.30],[650,0.24],[660,0.18],[670,0.14],[680,0.10],[690,0.07],[700,0.05],[710,0.03],
+    [720,0.02],[730,0.01],[735,0.00]
   ].map(d => ({ x: d[0], y: d[1] }))
   const W = 520, H = 300, pad = 44
   const xMin = 360, xMax = 735, yMin = 0, yMax = 1
   const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
   const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
-  const linePath = data.map((p, i) => `${i === 0 ? 'M' : 'L'} ${x(p.x)},${y(p.y)}`).join(' ')
-  const areaPath = `M ${x(data[0].x)},${y(0)} L ${x(data[0].x)},${y(data[0].y)} ` +
-    data.slice(1).map(p => `L ${x(p.x)},${y(p.y)}`).join(' ') + ` L ${x(data[data.length-1].x)},${y(0)} Z`
+  // Build a smooth Catmull–Rom spline path for a rounded curve
+  const pts = data.map(p => ({ x: x(p.x), y: y(p.y) }))
+  function smoothPath(points: {x: number, y: number}[], tension = 0.6) {
+    if (points.length < 2) return ''
+    const d: string[] = [`M ${points[0].x},${points[0].y}`]
+    for (let i = 0; i < points.length - 1; i++) {
+      const p0 = points[i - 1] || points[i]
+      const p1 = points[i]
+      const p2 = points[i + 1]
+      const p3 = points[i + 2] || p2
+      const c1x = p1.x + (p2.x - p0.x) / 6 * tension
+      const c1y = p1.y + (p2.y - p0.y) / 6 * tension
+      const c2x = p2.x - (p3.x - p1.x) / 6 * tension
+      const c2y = p2.y - (p3.y - p1.y) / 6 * tension
+      d.push(`C ${c1x},${c1y} ${c2x},${c2y} ${p2.x},${p2.y}`)
+    }
+    return d.join(' ')
+  }
+  const linePath = smoothPath(pts, 0.6)
+  const first = pts[0], last = pts[pts.length - 1]
+  const areaPath = `${linePath} L ${last.x},${y(0)} L ${first.x},${y(0)} Z`
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
       <defs>
