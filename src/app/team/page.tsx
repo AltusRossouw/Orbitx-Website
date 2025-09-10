@@ -13,8 +13,27 @@ export default function TeamPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative py-20 bg-gray-900">
-          <div className="container mx-auto px-6 text-center">
+        <section className="relative py-20 bg-gray-900 overflow-hidden">
+          {/* Animated Background (matches Home hero spotlight) */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+            <motion.div 
+              className="absolute inset-0 opacity-30"
+              animate={{
+                background: [
+                  "radial-gradient(circle at 20% 50%, #0066cc 0%, transparent 50%)",
+                  "radial-gradient(circle at 80% 20%, #3534F4 0%, transparent 50%)",
+                  "radial-gradient(circle at 40% 80%, #0066cc 0%, transparent 50%)"
+                ]
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            />
+          </div>
+          <div className="relative z-10 container mx-auto px-6 text-center">
             <motion.h1 
               className="text-4xl md:text-5xl font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
