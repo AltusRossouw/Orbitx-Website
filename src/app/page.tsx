@@ -173,7 +173,7 @@ const Features = () => {
             Why Choose 
             <span className="sr-only">OrbitX</span>
             <span aria-hidden="true" className="inline-block align-[-0.2em] mx-2">
-              <LogoSvg className="h-[1em] md:h-[1.1em] w-auto" title="OrbitX" />
+              <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[1em] md:h-[1.1em] w-auto inline-block" />
             </span>
             ?
           </h2>
@@ -224,7 +224,7 @@ const About = () => {
               About 
               <span className="sr-only">OrbitX</span>
               <span aria-hidden="true" className="inline-block align-[-0.2em] ml-2">
-                <LogoSvg className="h-[1em] md:h-[1.1em] w-auto" title="OrbitX" />
+                <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[1em] md:h-[1.1em] w-auto inline-block" />
               </span>
             </h2>
             <p className="text-lg text-gray-300 mb-6">
