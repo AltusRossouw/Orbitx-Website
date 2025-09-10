@@ -1,17 +1,8 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
+import { Inter } from 'next/font/google'
 import './globals.css'
 
-const realHeadPro = localFont({
-  src: [
-    { path: '../fonts/real-head-pro/RealHeadPro-Light.otf', weight: '300', style: 'normal' },
-    { path: '../fonts/real-head-pro/RealHeadPro-Semilight.otf', weight: '350', style: 'normal' },
-    { path: '../fonts/real-head-pro/RealHeadPro-Medium.otf', weight: '500', style: 'normal' },
-    { path: '../fonts/real-head-pro/RealHeadPro-Bold.otf', weight: '700', style: 'normal' },
-  ],
-  variable: '--font-real-head-pro',
-  display: 'swap',
-})
+const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://orbitx.co.za'),
@@ -79,7 +70,7 @@ export default function RootLayout({
         <link rel="icon" href="/images/orbitx-logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/orbitx-logo.svg" />
       </head>
-  <body className={`${realHeadPro.variable} bg-black text-white`}>
+  <body className={`${inter.className} bg-black text-white`}>
         {children}
       </body>
     </html>
