@@ -38,10 +38,10 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="#home" className="text-white hover:text-orbitx-accent transition-colors">Home</Link>
+            <Link href="/" className="text-white hover:text-orbitx-accent transition-colors">Home</Link>
             <Link href="/products" className="text-white hover:text-orbitx-accent transition-colors">Products</Link>
-            <Link href="#about" className="text-white hover:text-orbitx-accent transition-colors">About</Link>
-            <Link href="#contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</Link>
+            <Link href="/#about" className="text-white hover:text-orbitx-accent transition-colors">About</Link>
+            <Link href="/#contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -61,10 +61,10 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="flex flex-col space-y-4">
-              <Link href="#home" className="text-white hover:text-orbitx-accent transition-colors">Home</Link>
+              <Link href="/" className="text-white hover:text-orbitx-accent transition-colors">Home</Link>
               <Link href="/products" className="text-white hover:text-orbitx-accent transition-colors">Products</Link>
-              <Link href="#about" className="text-white hover:text-orbitx-accent transition-colors">About</Link>
-              <Link href="#contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</Link>
+              <Link href="/#about" className="text-white hover:text-orbitx-accent transition-colors">About</Link>
+              <Link href="/#contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</Link>
             </div>
           </motion.div>
         )}
