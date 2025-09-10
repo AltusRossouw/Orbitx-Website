@@ -123,7 +123,7 @@ export default function ContactPage() {
                 <div style={{ aspectRatio: '16 / 9' }} className="w-full">
                   <iframe
                     title="OrbitX Location"
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7307.288105791529!2d18.960872!3d-33.7662664!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcda8457ff03b8f%3A0xc4b7eed4c09800b1!2sOrbitX%20Direct%20Drive%20LED%20Lights!5e1!3m2!1sen!2sza!4v1757516555225!5m2!1sen!2sza"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.7803310223017!2d18.959728813488013!3d-33.766341913651715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcda8457ff03b8f%3A0xc4b7eed4c09800b1!2sOrbitX%20Direct%20Drive%20LED%20Lights!5e0!3m2!1sen!2sza!4v1757516928141!5m2!1sen!2sza"
                     className="w-full h-full"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
