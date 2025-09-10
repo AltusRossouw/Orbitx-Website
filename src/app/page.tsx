@@ -528,13 +528,13 @@ const Contact = () => {
                 <div>
                   <h4 className="font-semibold text-lg">Phone</h4>
                   <p className="text-gray-400">
-                    Sales: <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('021 879 1483')}>021 879 1483</a>
+                    Sales: <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('+27 21 879 1483')}>+27 21 879 1483</a>
                   </p>
                   <p className="text-gray-400">
-                    Ian Manchip: <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('071 581 5751')}>071 581 5751</a>
+                    Ian Manchip: <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('+27 71 581 5751')}>+27 71 581 5751</a>
                   </p>
                   <p className="text-gray-400">
-                    Frans Rossouw: <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('082 883 5008')}>082 883 5008</a>
+                    Frans Rossouw: <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('+27 82 883 5008')}>+27 82 883 5008</a>
                   </p>
                 </div>
               </div>
