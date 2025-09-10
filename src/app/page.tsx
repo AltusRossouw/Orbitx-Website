@@ -586,7 +586,7 @@ const Footer = () => {
               <a href="#about" className="block text-gray-400 hover:text-orbitx-accent transition-colors">About Us</a>
               <a href="#contact" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Contact</a>
               <a href={companyAssets.mainBrochure} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Main Brochure</a>
-              <a href={companyAssets.guaranteeDocument} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Guarantee Info</a>
+              <a href="/guarantee" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Guarantee</a>
             </div>
           </div>
           

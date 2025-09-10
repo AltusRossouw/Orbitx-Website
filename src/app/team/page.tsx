@@ -118,6 +118,7 @@ export default function TeamPage() {
                 <Link href="/products" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Products</Link>
                 <Link href="/#about" className="block text-gray-400 hover:text-orbitx-accent transition-colors">About Us</Link>
                 <Link href="/#contact" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Contact</Link>
+                <Link href="/guarantee" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Guarantee</Link>
               </div>
             </div>
             <div>
