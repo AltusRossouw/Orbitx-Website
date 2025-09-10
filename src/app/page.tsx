@@ -172,8 +172,8 @@ const Features = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Why Choose 
             <span className="sr-only">OrbitX</span>
-            <span aria-hidden="true" className="inline-block align-[-0.2em] mx-2">
-              <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[1em] md:h-[1.1em] w-auto inline-block" />
+            <span aria-hidden="true" className="inline-block align-[0.06em] md:align-[0.08em] mx-2 leading-none">
+              <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[0.95em] md:h-[1.05em] w-auto inline-block align-middle" />
             </span>
             ?
           </h2>
@@ -223,8 +223,8 @@ const About = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               About 
               <span className="sr-only">OrbitX</span>
-              <span aria-hidden="true" className="inline-block align-[-0.2em] ml-2">
-                <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[1em] md:h-[1.1em] w-auto inline-block" />
+              <span aria-hidden="true" className="inline-block align-[0.06em] md:align-[0.08em] ml-2 leading-none">
+                <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[0.95em] md:h-[1.05em] w-auto inline-block align-middle" />
               </span>
             </h2>
             <p className="text-lg text-gray-300 mb-6">
@@ -358,7 +358,11 @@ const Videos = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Watch <span className="text-orbitx-accent">OrbitX</span>
+            Watch
+            <span className="sr-only"> OrbitX</span>
+            <span aria-hidden="true" className="inline-block align-[0.06em] md:align-[0.08em] ml-2 leading-none">
+              <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[0.95em] md:h-[1.05em] w-auto inline-block align-middle" />
+            </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Learn more about our Direct Drive LED technology and installations.
