@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { ExternalLink, Award } from 'lucide-react'
 import { products, companyAssets } from '../../data/products'
 import Header from '@/components/Header'
-import LogoSvg from '@/components/LogoSvg'
 
 // Helper to convert display phone numbers to tel:+27 format
 const toTelHref = (display: string) => {
@@ -152,7 +151,13 @@ export default function ProductsPage() {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="mb-4">
-                <LogoSvg className="h-10 w-auto" />
+                <Image
+                  src="/images/orbitx-logo.svg"
+                  alt="OrbitX"
+                  width={160}
+                  height={48}
+                  className="h-10 w-auto"
+                />
               </div>
               <p className="text-gray-400 mb-4">
                 Leading South African manufacturer of Direct Drive LED lighting solutions 

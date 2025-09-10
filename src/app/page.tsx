@@ -20,7 +20,6 @@ import {
 } from 'lucide-react'
 import { clientImages, companyAssets } from '../data/products'
 import Header from '@/components/Header'
-import LogoSvg from '@/components/LogoSvg'
 
 // Components
 // Helper to convert SA numbers like "021 879 1483" or "071 581 5751" to tel:+27... format
@@ -70,7 +69,14 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="mb-6"
             >
-              <LogoSvg className="h-16 md:h-20 w-auto" />
+              <Image
+                src="/images/orbitx-logo.svg"
+                alt="OrbitX"
+                width={240}
+                height={72}
+                priority
+                className="h-16 md:h-20 w-auto"
+              />
             </motion.div>
             <motion.h1 
               className="text-3xl md:text-5xl font-bold text-gray-300"
@@ -173,7 +179,14 @@ const Features = () => {
             Why Choose 
             <span className="sr-only">OrbitX</span>
             <span aria-hidden="true" className="inline-block align-[0.06em] md:align-[0.08em] mx-2 leading-none">
-              <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[0.95em] md:h-[1.05em] w-auto inline-block align-middle" />
+              <Image
+                src="/images/orbitx-logo.svg"
+                alt=""
+                aria-hidden
+                width={200}
+                height={60}
+                className="h-[0.95em] md:h-[1.05em] w-auto inline-block align-middle"
+              />
             </span>
             ?
           </h2>
@@ -224,7 +237,14 @@ const About = () => {
               About 
               <span className="sr-only">OrbitX</span>
               <span aria-hidden="true" className="inline-block align-[0.06em] md:align-[0.08em] ml-2 leading-none">
-                <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[0.95em] md:h-[1.05em] w-auto inline-block align-middle" />
+                <Image
+                  src="/images/orbitx-logo.svg"
+                  alt=""
+                  aria-hidden
+                  width={200}
+                  height={60}
+                  className="h-[0.95em] md:h-[1.05em] w-auto inline-block align-middle"
+                />
               </span>
             </h2>
             <p className="text-lg text-gray-300 mb-6">
@@ -361,7 +381,14 @@ const Videos = () => {
             Watch
             <span className="sr-only"> OrbitX</span>
             <span aria-hidden="true" className="inline-block align-[0.06em] md:align-[0.08em] ml-2 leading-none">
-              <img src="/images/orbitx-logo.svg" alt="" aria-hidden="true" className="h-[0.95em] md:h-[1.05em] w-auto inline-block align-middle" />
+              <Image
+                src="/images/orbitx-logo.svg"
+                alt=""
+                aria-hidden
+                width={200}
+                height={60}
+                className="h-[0.95em] md:h-[1.05em] w-auto inline-block align-middle"
+              />
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -527,7 +554,13 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="mb-4">
-              <LogoSvg className="h-10 w-auto" />
+              <Image
+                src="/images/orbitx-logo.svg"
+                alt="OrbitX"
+                width={160}
+                height={48}
+                className="h-10 w-auto"
+              />
             </div>
             <p className="text-gray-400 mb-4">
               Leading South African manufacturer of Direct Drive LED lighting solutions 

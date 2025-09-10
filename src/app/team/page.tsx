@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import Header from '@/components/Header'
-import LogoSvg from '@/components/LogoSvg'
 import { team } from '@/data/team'
 
 export default function TeamPage() {
@@ -100,7 +99,13 @@ export default function TeamPage() {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="mb-4">
-                <LogoSvg className="h-10 w-auto" />
+                <Image
+                  src="/images/orbitx-logo.svg"
+                  alt="OrbitX"
+                  width={160}
+                  height={48}
+                  className="h-10 w-auto"
+                />
               </div>
               <p className="text-gray-400 mb-4">
                 Leading South African manufacturer of Direct Drive LED lighting solutions 
