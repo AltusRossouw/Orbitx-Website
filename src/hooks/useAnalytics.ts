@@ -17,8 +17,8 @@ export default function useAnalytics() {
   const pathname = usePathname()
 
   useEffect(() => {
-    // Skip tracking for the analysis page itself
-    if (pathname === '/analysis') return
+    // Skip tracking for the analytics page itself
+    if (pathname === '/analytics') return
 
     const trackVisit = () => {
       const visitData = {
