@@ -1,16 +1,22 @@
-# Alternative Dockerfile without Sharp optimization
+# Robust Dockerfile for Alpine Linux
 FROM node:18-alpine
 
-# Install dependencies
-RUN apk add --no-cache libc6-compat
+# Install system dependencies for potential native modules
+RUN apk add --no-cache \
+    libc6-compat \
+    dumb-init
 
 WORKDIR /app
 
 # Copy package files
-COPY package.json package-lock.json* ./
+COPY package.json ./
+COPY package-lock.json* ./
 
-# Install dependencies
-RUN npm ci
+# Clear npm cache and install dependencies with fallback
+RUN npm cache clean --force && \
+    (npm ci --only=production --no-optional || \
+     npm install --only=production --no-optional) && \
+    npm cache clean --force
 
 # Copy source code
 COPY . .
@@ -18,22 +24,23 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Create non-root user for security
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# Set environment variables
+# Set production environment
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Change ownership of the app directory
+# Change ownership and switch to non-root user
 RUN chown -R nextjs:nodejs /app
 USER nextjs
 
 # Expose port
 EXPOSE 3000
 
-# Start the application
+# Use dumb-init for proper signal handling
+ENTRYPOINT ["dumb-init", "--"]
 CMD ["npm", "start"]
