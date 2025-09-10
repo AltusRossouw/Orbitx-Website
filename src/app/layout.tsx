@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import AnalyticsProvider from '@/components/AnalyticsProvider'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
@@ -71,7 +72,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/images/orbitx-logo.svg" />
       </head>
   <body className={`${inter.className} bg-black text-white`}>
-        {children}
+        <AnalyticsProvider>
+          {children}
+        </AnalyticsProvider>
       </body>
     </html>
   )
