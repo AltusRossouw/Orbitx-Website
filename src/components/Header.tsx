@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
-import LogoSvg from './LogoSvg'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -32,7 +32,14 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
           >
             <Link href="/" aria-label="OrbitX Home" className="flex items-center">
-              <LogoSvg className="h-8 w-auto" />
+              <Image
+                src="/images/orbitx-logo.svg"
+                alt="OrbitX"
+                width={112}
+                height={32}
+                priority
+                className="h-8 w-auto"
+              />
             </Link>
           </motion.div>
 
