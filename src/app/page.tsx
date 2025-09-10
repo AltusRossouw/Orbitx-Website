@@ -499,6 +499,58 @@ const ClientShowcase = () => {
   )
 }
 
+const Videos = () => {
+  const videos = [
+    { id: 'ndW9jQkd2JQ', title: 'OrbitX Marketing Video 1' },
+    { id: '1LMtXhsm3TQ', title: 'OrbitX Marketing Video 2' },
+  ]
+
+  return (
+    <section className="py-20 bg-gray-900">
+      <div className="container mx-auto px-6">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Watch <span className="text-orbitx-accent">OrbitX</span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Learn more about our Direct Drive LED technology and installations.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {videos.map((v, i) => (
+            <motion.div
+              key={v.id}
+              className="w-full rounded-xl overflow-hidden border border-gray-800 bg-black"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div style={{ aspectRatio: '16 / 9' }} className="w-full">
+                <iframe
+                  title={v.title}
+                  src={`https://www.youtube-nocookie.com/embed/${v.id}?rel=0`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-black">
@@ -696,6 +748,7 @@ export default function Home() {
         <Products />
         <About />
         <ClientShowcase />
+  <Videos />
         <Contact />
       </main>
       <Footer />
