@@ -3,8 +3,15 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, Award } from 'lucide-react'
 import { products, companyAssets } from '../../data/products'
+
+// Helper to convert display phone numbers to tel:+27 format
+const toTelHref = (display: string) => {
+  const digits = display.replace(/\D/g, '')
+  const intl = digits.startsWith('0') ? `+27${digits.slice(1)}` : (digits.startsWith('27') ? `+${digits}` : `+${digits}`)
+  return `tel:${intl}`
+}
 
 // Inline logo SVG (copied to avoid cross-file refactor)
 const LogoSvg = ({ className = 'h-8 w-auto', title = 'OrbitX Logo' }: { className?: string; title?: string }) => (
@@ -162,6 +169,72 @@ export default function ProductsPage() {
           </div>
         </section>
       </main>
+      {/* Footer copied from home page for consistency */}
+      <footer className="bg-gray-900 border-t border-gray-800 py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="mb-4">
+                <LogoSvg className="h-10 w-auto" />
+              </div>
+              <p className="text-gray-400 mb-4">
+                Leading South African manufacturer of Direct Drive LED lighting solutions 
+                for industrial and commercial applications.
+              </p>
+              <div className="flex items-center text-sm text-gray-500">
+                <Award size={16} className="mr-2" />
+                <a
+                  href="https://www.sabs.co.za"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-orbitx-accent underline-offset-2 hover:underline"
+                >
+                  SABS approved
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <div className="space-y-2">
+                <Link href="/products" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Products</Link>
+                <Link href="/#about" className="block text-gray-400 hover:text-orbitx-accent transition-colors">About Us</Link>
+                <Link href="/#contact" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Contact</Link>
+                <a href={companyAssets.mainBrochure} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Main Brochure</a>
+                <a href={companyAssets.guaranteeDocument} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Guarantee Info</a>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
+              <div className="space-y-2 text-gray-400">
+                <p>
+                  <a
+                    href="https://maps.app.goo.gl/tWs5EBrKsQ82o4wr5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-orbitx-accent underline-offset-2 hover:underline"
+                  >
+                    13 Suid Street, Southern Paarl
+                  </a>
+                </p>
+                <p>
+                  <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href="mailto:info@orbitx.co.za">info@orbitx.co.za</a>
+                </p>
+                <p>
+                  <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('+27 21 879 1483')}>+27 21 879 1483</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-500">
+              © 2025 OrbitX Direct Drive LED Lights. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
