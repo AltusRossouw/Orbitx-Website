@@ -126,7 +126,7 @@ const Hero = () => {
           animate={{
             background: [
               "radial-gradient(circle at 20% 50%, #0066cc 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 20%, #00ccff 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 20%, #3534F4 0%, transparent 50%)",
               "radial-gradient(circle at 40% 80%, #0066cc 0%, transparent 50%)"
             ]
           }}

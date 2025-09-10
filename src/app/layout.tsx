@@ -73,7 +73,7 @@ export default function RootLayout({
         
         {/* WhatsApp specific meta tags */}
         <meta property="og:site_name" content="OrbitX LED Lights" />
-        <meta name="theme-color" content="#3534FE" />
+  <meta name="theme-color" content="#3534F4" />
         
         {/* Favicon */}
         <link rel="icon" href="/images/orbitx-logo.svg" type="image/svg+xml" />
