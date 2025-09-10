@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  orbitx-website:
+    build:
+      context: https://github.com/AltusRossouw/Orbitx-Website-New.git
+      dockerfile: Dockerfile
+    container_name: orbitx-website
+    ports:
+      - "3330:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+    volumes:
+      - orbitx_cache:/app/.next/cache
+    restart: unless-stopped
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    
+    # Labels for management
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=false"
+      - "app=orbitx-website"
+      - "environment=production"
+
+volumes:
+  orbitx_cache:
+    driver: local
+    labels:
+      - "app=orbitx-website"
