@@ -63,8 +63,8 @@ export default function RootLayout({
         <meta property="og:image:alt" content="OrbitX - Direct Drive LED Lighting Solutions" />
         
         {/* WhatsApp specific meta tags */}
-        <meta property="og:site_name" content="OrbitX LED Lights" />
-  <meta name="theme-color" content="#3534F4" />
+  <meta property="og:site_name" content="OrbitX LED Lights" />
+  <meta name="theme-color" content="#004193" />
         
         {/* Favicon */}
         <link rel="icon" href="/images/orbitx-logo.svg" type="image/svg+xml" />

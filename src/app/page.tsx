@@ -45,7 +45,7 @@ const Hero = () => {
           animate={{
             background: [
               "radial-gradient(circle at 20% 50%, #0066cc 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 20%, #3534F4 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 20%, #004193 0%, transparent 50%)",
               "radial-gradient(circle at 40% 80%, #0066cc 0%, transparent 50%)"
             ]
           }}
@@ -271,7 +271,7 @@ const About = () => {
             className="relative"
           >
             <div className="bg-gradient-to-br from-orbitx-dark-blue to-black p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold mb-4">Our Clients</h3>
+              <h3 className="text-2xl font-bold mb-4">Some of Our Clients</h3>
               <div className="space-y-3 text-gray-300">
                 <p>• Rhodes Food Group</p>
                 <p>• Outdoor Warehouse</p>
