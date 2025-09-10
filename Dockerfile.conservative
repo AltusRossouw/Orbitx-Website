@@ -1,8 +1,8 @@
 # Conservative Dockerfile - Maximum Compatibility
 FROM node:18-alpine
 
-# Install essential dependencies
-RUN apk add --no-cache libc6-compat
+# Install essential dependencies including curl for health checks
+RUN apk add --no-cache libc6-compat curl
 
 WORKDIR /app
 
@@ -40,5 +40,14 @@ USER nextjs
 # Expose port
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"]
+# Add startup script with debugging
+RUN echo '#!/bin/sh' > /app/start.sh && \
+    echo 'echo "Starting OrbitX website..."' >> /app/start.sh && \
+    echo 'echo "Node version: $(node --version)"' >> /app/start.sh && \
+    echo 'echo "Port: $PORT"' >> /app/start.sh && \
+    echo 'echo "Starting npm..."' >> /app/start.sh && \
+    echo 'exec npm start' >> /app/start.sh && \
+    chmod +x /app/start.sh
+
+# Start the application with debugging
+CMD ["/app/start.sh"]
