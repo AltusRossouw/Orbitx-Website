@@ -64,23 +64,22 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div className="flex flex-col items-center mb-6">
-            {/* Accessible heading for SEO, visually hidden */}
-            <h1 className="sr-only">OrbitX — Direct Drive LED Lights</h1>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
               className="mb-6"
             >
-              <Image
-                src="/images/orbitx-logo.svg"
-                alt="OrbitX"
-                width={420}
-                height={120}
-                className="h-16 md:h-24 w-auto"
-                priority
-              />
+              <LogoSvg className="h-16 md:h-20 w-auto" />
             </motion.div>
+            <motion.h1 
+              className="text-3xl md:text-5xl font-bold text-gray-300"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              Direct Drive LED Lights
+            </motion.h1>
           </motion.div>
           
           <motion.p 
@@ -171,7 +170,12 @@ const Features = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Why Choose <span className="text-orbitx-accent">OrbitX</span>?
+            Why Choose 
+            <span className="sr-only">OrbitX</span>
+            <span aria-hidden="true" className="inline-block align-[-0.2em] mx-2">
+              <LogoSvg className="h-[1em] md:h-[1.1em] w-auto" title="OrbitX" />
+            </span>
+            ?
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             We lead the way in LED lighting innovation with our unique Direct Drive technology 
@@ -217,7 +221,11 @@ const About = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              About <span className="text-orbitx-accent">OrbitX</span>
+              About 
+              <span className="sr-only">OrbitX</span>
+              <span aria-hidden="true" className="inline-block align-[-0.2em] ml-2">
+                <LogoSvg className="h-[1em] md:h-[1.1em] w-auto" title="OrbitX" />
+              </span>
             </h2>
             <p className="text-lg text-gray-300 mb-6">
               With manufacturing that started in 2016 in Paarl, we currently have more than 
