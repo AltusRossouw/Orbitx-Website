@@ -1,137 +1,101 @@
-# OrbitX - Modern LED Lighting Website
+# OrbitX LED Lighting Website
 
-A modern, responsive website for OrbitX Direct Drive LED Lights, built with Next.js, TypeScript, and Tailwind CSS.
+Modern, responsive website for OrbitX LED lighting company built with Next.js 14, TypeScript, and Tailwind CSS.
 
-## Overview
+## 🌟 Features
 
-This is a complete rebuild of the OrbitX website (orbitx.co.za) with a modern dark theme, showcasing their industrial LED lighting solutions. The website features all the original company information, products, and contact details with a sleek, tech-themed design.
+- **Modern Design**: Dark theme with professional LED lighting aesthetics
+- **Fully Responsive**: Optimized for desktop, tablet, and mobile devices
+- **Performance Optimized**: Next.js 14 with App Router for fast loading
+- **SEO Ready**: Open Graph meta tags for social media sharing
+- **TypeScript**: Full type safety throughout the application
+- **Product Showcase**: Complete product catalog with images and specifications
 
-## Features
+## 🚀 Quick Start
 
-- **Modern Dark Theme**: Professional dark color scheme with OrbitX branding colors
-- **Responsive Design**: Fully responsive across all devices
-- **Interactive Animations**: Smooth animations using Framer Motion
-- **Product Showcase**: Complete product catalog with specifications
-- **Company Information**: About section with client testimonials
-- **Contact Forms**: Interactive contact forms and information
-- **Performance Optimized**: Built with Next.js for optimal performance
-
-## Products Featured
-
-- **Neptune Ex Rated**: IP68 explosion-rated linear LED lights
-- **Neptune**: IP65 linear LED lights
-- **Titan**: Heavy-duty integrated linear LED lights
-- **Rhea Bulkhead**: Surface mount LED lights
-- **Phoebe Bulkhead**: IP65 surface mount LED lights
-- **T8 LED Tubes**: Energy-efficient tube replacements
-- **And many more...**
-
-## Technology Stack
-
-- **Framework**: Next.js 14
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Deployment Ready**: Optimized for production
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
+1. **Clone & Install:**
    ```bash
-   git clone <repository-url>
-   cd orbitx-website-new
-   ```
-
-2. Install dependencies:
-   ```bash
+   git clone https://github.com/AltusRossouw/Orbitx-Website-New.git
+   cd Orbitx-Website-New
    npm install
    ```
 
-3. Run the development server:
+2. **Development:**
    ```bash
    npm run dev
    ```
+   Open [http://localhost:3000](http://localhost:3000)
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+3. **Production Build:**
+   ```bash
+   npm run build
+   npm start
+   ```
 
-### Available Scripts
+## 📁 Project Structure
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+```
+src/
+├── app/
+│   ├── api/health/          # Health check endpoint
+│   ├── globals.css          # Global styles
+│   ├── layout.tsx           # Root layout with metadata
+│   └── page.tsx             # Main website component
+├── components/              # React components
+└── data/
+    └── products.ts          # Product catalog data
 
-## Company Information
-
-**OrbitX Direct Drive LED Lights**
-- Address: 13 Suid Street, Southern Paarl
-- Phone: 021 879 1483
-- Email: info@orbitx.co.za
-- Contacts: Ian Manchip (071 581 5751), Frans Rossouw (082 883 5008)
-
-## Key Features Implemented
-
-✅ **Hero Section** - Animated landing with company branding
-✅ **Product Catalog** - All OrbitX LED products with specifications  
-✅ **Company Story** - About section with 100k+ lights deployed
-✅ **Client Showcase** - Major clients including universities and corporations
-✅ **Contact Information** - Complete contact details and forms
-✅ **8-Year Guarantee** - Highlighting their unique double guarantee
-✅ **South African Made** - Emphasizing local manufacturing
-✅ **Direct Drive Technology** - Their unique selling proposition
-✅ **Mobile Responsive** - Works perfectly on all devices
-✅ **SEO Optimized** - Meta tags and structured content
-
-## Design Principles
-
-- **Dark Theme**: Professional appearance suitable for industrial clients
-- **Tech-Forward**: Modern animations and interactions
-- **Content-First**: All original OrbitX information preserved
-- **Performance**: Fast loading and optimized assets
-- **Accessibility**: Proper contrast ratios and semantic HTML
-
-## Deployment
-
-The website is **production-ready** and can be deployed to:
-- **Docker & Portainer** (recommended - see DEPLOYMENT.md)
-- Vercel (recommended for Next.js)
-- Netlify
-- AWS Amplify
-- Any hosting platform supporting Node.js or Docker
-
-### 🐳 **Docker Deployment (Portainer Ready)**
-
-This project includes complete Docker configuration for easy deployment in Portainer:
-
-#### Quick Start:
-```bash
-# Build and run with Docker
-docker build -t orbitx-website .
-docker run -d -p 3000:3000 --name orbitx-website orbitx-website
-
-# Or use docker-compose
-docker-compose up -d --build
-
-# Or use the deployment script
-./deploy.sh build
+public/
+├── images/                  # Website images and assets
+├── pdfs/                    # Product specification PDFs
+└── social/                  # Social media sharing images
 ```
 
-#### Portainer Deployment:
-1. Upload project to your server
-2. In Portainer, go to **Stacks** → **Add Stack**
-3. Use the provided `docker-compose.yml`
-4. Deploy and access on port 3000
+## 🛠 Technology Stack
 
-See `DEPLOYMENT.md` for detailed Portainer setup instructions.
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Animations**: Framer Motion
+- **Font**: Inter (Google Fonts)
 
-## License
+## 📱 Website Sections
 
-This project is proprietary to OrbitX Direct Drive LED Lights.
+- **Header**: Navigation with OrbitX logo
+- **Hero**: Main introduction with call-to-action
+- **Products**: Product showcase with specifications
+- **About**: Company information and expertise
+- **Contact**: Contact details and inquiry form
+
+## 🔗 WhatsApp Integration
+
+The website includes optimized WhatsApp sharing with:
+- Custom social media preview images
+- Open Graph meta tags
+- Proper sharing metadata
+
+## 📊 Performance Features
+
+- Static site generation for fast loading
+- Image optimization with Next.js Image component
+- Code splitting and lazy loading
+- SEO-optimized meta tags
+
+## 🎨 Design Highlights
+
+- **Dark Theme**: Professional appearance matching LED industry
+- **Blue Accent Colors**: Consistent with OrbitX branding (#3534FE)
+- **Responsive Grid Layouts**: Adapts to all screen sizes
+- **Smooth Animations**: Enhanced user experience with Framer Motion
+
+## 📈 SEO & Social Media
+
+- Complete Open Graph implementation
+- Twitter Card support
+- WhatsApp-optimized sharing
+- Structured metadata for search engines
+
+---
+
+**Built with ❤️ for OrbitX LED Lighting Solutions**
