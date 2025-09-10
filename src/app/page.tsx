@@ -84,7 +84,7 @@ const Header = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <a href="#home" className="text-white hover:text-orbitx-accent transition-colors">Home</a>
-            <a href="#products" className="text-white hover:text-orbitx-accent transition-colors">Products</a>
+            <a href="/products" className="text-white hover:text-orbitx-accent transition-colors">Products</a>
             <a href="#about" className="text-white hover:text-orbitx-accent transition-colors">About</a>
             <a href="#contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</a>
           </div>
@@ -107,7 +107,7 @@ const Header = () => {
           >
             <div className="flex flex-col space-y-4">
               <a href="#home" className="text-white hover:text-orbitx-accent transition-colors">Home</a>
-              <a href="#products" className="text-white hover:text-orbitx-accent transition-colors">Products</a>
+              <a href="/products" className="text-white hover:text-orbitx-accent transition-colors">Products</a>
               <a href="#about" className="text-white hover:text-orbitx-accent transition-colors">About</a>
               <a href="#contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</a>
             </div>
@@ -182,15 +182,15 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <motion.button 
+            <motion.a 
+              href="/products"
               className="px-8 py-4 bg-orbitx-accent text-black font-semibold rounded-lg hover:bg-white transition-all duration-300 flex items-center justify-center group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Products 
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-            </motion.button>
+            </motion.a>
             
             <motion.a
               href={companyAssets.mainBrochure}
@@ -286,90 +286,7 @@ const Features = () => {
   )
 }
 
-const Products = () => {
-  return (
-    <section id="products" className="py-20 bg-black">
-      <div className="container mx-auto px-6">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Our <span className="text-orbitx-accent">Products</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Explore our extensive selection of competitively priced LED lighting products, 
-            meticulously designed for extended service life and energy savings.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.slice(0, 12).map((product, index) => (
-            <motion.div
-              key={product.id}
-              className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-orbitx-accent transition-all duration-300 group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-            >
-              <div className="h-48 relative bg-gradient-to-br from-gray-800 to-gray-900">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                <p className="text-orbitx-accent text-sm font-medium mb-3">{product.type}</p>
-                <p className="text-gray-400 text-sm mb-4">{product.specs}</p>
-                <div className="flex items-center justify-between">
-                  <motion.a
-                    href={product.pdfSpec}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-orbitx-accent hover:text-white transition-colors font-medium flex items-center group"
-                    whileHover={{ x: 5 }}
-                  >
-                    View Specs <ExternalLink size={16} className="ml-1" />
-                  </motion.a>
-                  <div className="flex flex-wrap gap-1">
-                    {product.features.slice(0, 2).map((feature, idx) => (
-                      <span key={idx} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        
-        {/* Show more products button if there are more than 12 */}
-        {products.length > 12 && (
-          <motion.div 
-            className="text-center mt-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <button className="px-8 py-3 border border-orbitx-accent text-orbitx-accent hover:bg-orbitx-accent hover:text-black transition-all duration-300 rounded-lg">
-              View All Products
-            </button>
-          </motion.div>
-        )}
-      </div>
-    </section>
-  )
-}
+// Products section removed; now lives on /products
 
 const About = () => {
   return (
@@ -703,7 +620,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
-              <a href="#products" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Products</a>
+              <a href="/products" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Products</a>
               <a href="#about" className="block text-gray-400 hover:text-orbitx-accent transition-colors">About Us</a>
               <a href="#contact" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Contact</a>
               <a href={companyAssets.mainBrochure} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Main Brochure</a>
@@ -752,7 +669,7 @@ export default function Home() {
       <main>
         <Hero />
         <Features />
-        <Products />
+  {/* Products moved to /products */}
         <About />
         <ClientShowcase />
   <Videos />
