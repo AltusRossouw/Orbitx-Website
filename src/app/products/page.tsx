@@ -66,49 +66,58 @@ export default function ProductsPage() {
         <section className="py-16 bg-black">
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {products.map((product, index) => (
-                <motion.div
-                  key={product.id}
-                  className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-orbitx-accent transition-all duration-300 group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ y: -4 }}
-                >
-                  <div className="h-48 relative bg-gradient-to-br from-gray-800 to-gray-900">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                    <p className="text-orbitx-accent text-sm font-medium mb-3">{product.type}</p>
-                    <p className="text-gray-400 text-sm mb-4">{product.specs}</p>
-                    <div className="flex items-center justify-between">
-                      <motion.a
-                        href={product.pdfSpec}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-orbitx-accent hover:text-white transition-colors font-medium flex items-center group"
-                        whileHover={{ x: 4 }}
-                      >
-                        View Specs <ExternalLink size={16} className="ml-1" />
-                      </motion.a>
-                      <div className="flex flex-wrap gap-1">
-                        {product.features.slice(0, 2).map((feature, idx) => (
-                          <span key={idx} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                            {feature}
-                          </span>
-                        ))}
+              {products.map((product, index) => {
+                const href = product.id === 'neptune' ? '/products/neptune' : undefined
+                const Card = (
+                  <motion.div
+                    key={product.id}
+                    className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-orbitx-accent transition-all duration-300 group"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    whileHover={{ y: -4 }}
+                  >
+                    <div className="h-48 relative bg-gradient-to-br from-gray-800 to-gray-900">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
+                      <p className="text-orbitx-accent text-sm font-medium mb-3">{product.type}</p>
+                      <p className="text-gray-400 text-sm mb-4">{product.specs}</p>
+                      <div className="flex items-center justify-between">
+                        <motion.a
+                          href={product.pdfSpec}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-orbitx-accent hover:text-white transition-colors font-medium flex items-center group"
+                          whileHover={{ x: 4 }}
+                          onClick={(e) => { e.stopPropagation() }}
+                        >
+                          View Specs <ExternalLink size={16} className="ml-1" />
+                        </motion.a>
+                        <div className="flex flex-wrap gap-1">
+                          {product.features.slice(0, 2).map((feature, idx) => (
+                            <span key={idx} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                )
+                return href ? (
+                  <Link key={product.id} href={href} className="block focus:outline-none focus:ring-2 focus:ring-orbitx-accent rounded-xl">
+                    {Card}
+                  </Link>
+                ) : Card
+              })}
             </div>
           </div>
         </section>
