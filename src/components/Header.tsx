@@ -16,16 +16,30 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
+
   return (
     <motion.header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-black/90 backdrop-blur-md border-b border-gray-800' : 'bg-transparent'
+      className={`fixed top-0 w-full z-50 transition-all duration-300 border-b border-gray-800 ${
+        scrolled 
+          ? 'bg-black/90 backdrop-blur-md md:shadow-sm'
+          : 'bg-black md:bg-transparent shadow-sm md:shadow-none'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-4 sm:px-6 py-4">
         <nav className="flex items-center justify-between">
           <motion.div 
             className="flex items-center"
@@ -64,16 +78,16 @@ export default function Header() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <motion.div 
-            className="md:hidden mt-4 py-4 border-t border-gray-800"
+            className="md:hidden mt-4 py-4 px-4 bg-black border border-gray-800 rounded-xl shadow-lg"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="flex flex-col space-y-4">
-              <Link href="/" className="text-white hover:text-orbitx-accent transition-colors">Home</Link>
-              <Link href="/products" className="text-white hover:text-orbitx-accent transition-colors">Products</Link>
-              <Link href="/team" className="text-white hover:text-orbitx-accent transition-colors">Team</Link>
-              <Link href="/#about" className="text-white hover:text-orbitx-accent transition-colors">About</Link>
-              <Link href="/#contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</Link>
+            <div className="flex flex-col">
+              <Link href="/" className="block py-2 text-white hover:text-orbitx-accent transition-colors">Home</Link>
+              <Link href="/products" className="block py-2 text-white hover:text-orbitx-accent transition-colors">Products</Link>
+              <Link href="/team" className="block py-2 text-white hover:text-orbitx-accent transition-colors">Team</Link>
+              <Link href="/#about" className="block py-2 text-white hover:text-orbitx-accent transition-colors">About</Link>
+              <Link href="/#contact" className="block py-2 text-white hover:text-orbitx-accent transition-colors">Contact</Link>
             </div>
           </motion.div>
         )}

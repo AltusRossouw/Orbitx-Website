@@ -224,7 +224,7 @@ const Features = () => {
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-gray-900">
+    <section id="about" className="py-20 bg-gray-900 scroll-mt-24 md:scroll-mt-32">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -426,7 +426,7 @@ const Videos = () => {
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-black">
+    <section id="contact" className="py-20 bg-black scroll-mt-24 md:scroll-mt-32">
       <div className="container mx-auto px-6">
         <motion.div 
           className="text-center mb-16"
