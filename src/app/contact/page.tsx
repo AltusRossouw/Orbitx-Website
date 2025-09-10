@@ -123,7 +123,7 @@ export default function ContactPage() {
                 <div style={{ aspectRatio: '16 / 9' }} className="w-full">
                   <iframe
                     title="OrbitX Location"
-                    src="https://www.google.com/maps?q=13%20Suid%20Street,%20Southern%20Paarl&output=embed"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7307.288105791529!2d18.960872!3d-33.7662664!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcda8457ff03b8f%3A0xc4b7eed4c09800b1!2sOrbitX%20Direct%20Drive%20LED%20Lights!5e1!3m2!1sen!2sza!4v1757516555225!5m2!1sen!2sza"
                     className="w-full h-full"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
@@ -131,8 +131,6 @@ export default function ContactPage() {
                 </div>
               </div>
             </motion.div>
-
-            {/* Form */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}

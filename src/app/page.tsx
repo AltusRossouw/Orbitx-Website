@@ -392,7 +392,7 @@ const Videos = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Learn more about our Direct Drive LED technology and installations.
+            Learn more about our Direct Drive LED technology and explore our marketing videos.
           </p>
         </motion.div>
 
