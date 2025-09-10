@@ -534,7 +534,7 @@ const Contact = () => {
                   <h4 className="font-semibold text-lg">Address</h4>
                   <p className="text-gray-400">
                     <a
-                      href={toMapsHref('13 Suid Street, Southern Paarl')}
+                      href="https://maps.app.goo.gl/tWs5EBrKsQ82o4wr5"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-orbitx-accent underline-offset-2 hover:underline"
@@ -657,7 +657,7 @@ const Footer = () => {
             <div className="space-y-2 text-gray-400">
               <p>
                 <a
-                  href={toMapsHref('13 Suid Street, Southern Paarl')}
+                  href="https://maps.app.goo.gl/tWs5EBrKsQ82o4wr5"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-orbitx-accent underline-offset-2 hover:underline"
