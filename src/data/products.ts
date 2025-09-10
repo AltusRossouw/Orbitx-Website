@@ -144,34 +144,34 @@ export const products = [
 
 export const clientImages = [
   {
-    name: "Agrimark Simondium",
+    name: "Le Roux Group",
     image: "/images/clients/IMG_1149-copy.png",
     description: "Industrial warehouse lighting installation"
   },
   {
-    name: "Le Roux Group",
+    name: "Swaarmoed",
     image: "/images/clients/WhatsApp-Image-2018-12-20-at-06.03.06.jpeg",
     description: "Commercial facility LED upgrade"
   },
   {
-    name: "Swaarmoed",
+    name: "Lebombo",
     image: "/images/clients/IMG_4848-scaled.jpeg", 
     description: "Agricultural facility lighting"
   },
   {
-    name: "Lebombo",
-    image: "/images/clients/3ee.jpg",
-    description: "Mining facility lighting installation"
-  },
-  {
     name: "H&S Panelbeaters",
-    image: "/images/clients/IMG_2248-Large.jpeg",
-    description: "Automotive workshop lighting"
+    image: "/images/clients/3ee.jpg",
+    description: "Industrial warehouse lighting installation"
   },
   {
     name: "Vin Ventions",
-    image: "/images/clients/IMG_4717-copy.png",
+    image: "/images/clients/IMG_2248-Large.jpeg",
     description: "Warehouse and storage facility"
+  },
+  {
+    name: "Agrimark Simondium",
+    image: "/images/clients/IMG_4717-copy.png",
+    description: "Commercial facility"
   }
 ]
 

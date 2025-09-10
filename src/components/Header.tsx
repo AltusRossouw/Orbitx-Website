@@ -40,6 +40,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-white hover:text-orbitx-accent transition-colors">Home</Link>
             <Link href="/products" className="text-white hover:text-orbitx-accent transition-colors">Products</Link>
+            <Link href="/team" className="text-white hover:text-orbitx-accent transition-colors">Team</Link>
             <Link href="/#about" className="text-white hover:text-orbitx-accent transition-colors">About</Link>
             <Link href="/#contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</Link>
           </div>
@@ -63,6 +64,7 @@ export default function Header() {
             <div className="flex flex-col space-y-4">
               <Link href="/" className="text-white hover:text-orbitx-accent transition-colors">Home</Link>
               <Link href="/products" className="text-white hover:text-orbitx-accent transition-colors">Products</Link>
+              <Link href="/team" className="text-white hover:text-orbitx-accent transition-colors">Team</Link>
               <Link href="/#about" className="text-white hover:text-orbitx-accent transition-colors">About</Link>
               <Link href="/#contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</Link>
             </div>
