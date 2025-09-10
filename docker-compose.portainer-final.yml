@@ -4,7 +4,7 @@ services:
   orbitx-website:
     build: 
       context: https://github.com/AltusRossouw/Orbitx-Website-New.git
-      dockerfile: Dockerfile.basic
+      dockerfile: Dockerfile.conservative
     container_name: orbitx-website-prod
     ports:
       - "3330:3000"
@@ -13,6 +13,7 @@ services:
       - NEXT_TELEMETRY_DISABLED=1
       - PORT=3000
       - HOSTNAME=0.0.0.0
+      - DISABLE_SHARP=1
     volumes:
       # Persist Next.js cache for better performance
       - orbitx_cache:/app/.next/cache
@@ -30,10 +31,10 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: 512M
+          memory: 1024M
         reservations:
           cpus: '0.25'
-          memory: 256M
+          memory: 512M
     
     # Labels for Portainer and management
     labels:
@@ -49,7 +50,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 90s
+      start_period: 120s
     
     # Logging configuration
     logging:

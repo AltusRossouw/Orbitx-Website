@@ -1,0 +1,44 @@
+# Conservative Dockerfile - Maximum Compatibility
+FROM node:18-alpine
+
+# Install essential dependencies
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Set environment variables early to avoid build issues
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV DISABLE_SHARP=1
+
+# Copy package.json
+COPY package.json ./
+
+# Install dependencies without Sharp to avoid native compilation issues
+RUN npm install --no-package-lock --ignore-scripts
+
+# Copy source code
+COPY . .
+
+# Build with additional safety flags and memory management
+RUN NODE_OPTIONS="--max-old-space-size=2048" npm run build || \
+    (echo "Build failed with full memory, trying with reduced memory:" && \
+     NODE_OPTIONS="--max-old-space-size=1024" npm run build) || \
+    (echo "Both memory configs failed, trying basic build:" && \
+     npm run build)
+
+# Clean up dev dependencies
+RUN npm prune --production --ignore-scripts
+
+# Create non-root user
+RUN adduser -S -D nextjs && \
+    chown -R nextjs:nextjs /app
+
+# Switch to non-root user
+USER nextjs
+
+# Expose port
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "start"]
