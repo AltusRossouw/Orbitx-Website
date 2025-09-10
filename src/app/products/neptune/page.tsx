@@ -85,6 +85,16 @@ export default function NeptuneProductPage() {
           </div>
         </section>
 
+        {/* Dimensions */}
+        <section className="py-12 bg-black">
+          <div className="container mx-auto px-6">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">Dimensions</h2>
+            <div className="bg-transparent border border-gray-800 rounded-xl overflow-hidden">
+              <DimensionsDiagram imageSrc={image} />
+            </div>
+          </div>
+        </section>
+
         {/* Configurations & Performance */}
         <section className="py-12 bg-black">
           <div className="container mx-auto px-6">
@@ -315,7 +325,7 @@ export default function NeptuneProductPage() {
                   rel="noopener noreferrer"
                   className="hover:text-orbitx-accent underline-offset-2 hover:underline"
                 >
-                  SABS approved
+                  SABS Tested
                 </a>
               </div>
             </div>
@@ -569,5 +579,35 @@ function Axes({ W, H, pad, xLabel, yLabel, xTicks, yTicks }: { W: number, H: num
       <text x={(xMin + xMax) / 2} y={H - 8} textAnchor="middle" fontSize={12} fill="#bbb">{xLabel}</text>
       <text x={12} y={(yMin + yMax) / 2} textAnchor="middle" fontSize={12} fill="#bbb" transform={`rotate(-90 12 ${(yMin + yMax) / 2})`}>{yLabel}</text>
     </g>
+  )
+}
+
+// Dimensions diagram with transparent background overlay
+function DimensionsDiagram({ imageSrc }: { imageSrc: string }) {
+  return (
+    <div className="relative w-full h-[320px] bg-transparent">
+      {/* Product image */}
+      <Image src={imageSrc} alt="Neptune Dimensions" fill className="object-contain p-6" />
+      {/* Transparent overlay SVG for arrows and labels */}
+      <svg viewBox="0 0 900 300" className="absolute inset-0 w-full h-full pointer-events-none">
+        <defs>
+          <marker id="dimArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#ef4444" />
+          </marker>
+        </defs>
+
+        {/* Vertical 92 mm (left) */}
+        <line x1="80" y1="60" x2="80" y2="220" stroke="#ef4444" strokeWidth="3" markerStart="url(#dimArrow)" markerEnd="url(#dimArrow)" />
+        <text x="90" y="145" fill="#ffffff" fontSize="18">92 mm</text>
+
+        {/* Horizontal 92 mm (left) */}
+        <line x1="30" y1="255" x2="170" y2="255" stroke="#ef4444" strokeWidth="3" markerStart="url(#dimArrow)" markerEnd="url(#dimArrow)" />
+        <text x="70" y="245" fill="#ffffff" fontSize="18">92 mm</text>
+
+        {/* Long length arrow with label */}
+        <line x1="180" y1="275" x2="860" y2="275" stroke="#ef4444" strokeWidth="3" markerStart="url(#dimArrow)" markerEnd="url(#dimArrow)" />
+        <text x="520" y="265" textAnchor="middle" fill="#ffffff" fontSize="20">see configurations</text>
+      </svg>
+    </div>
   )
 }

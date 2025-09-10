@@ -167,7 +167,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="hover:text-orbitx-accent underline-offset-2 hover:underline"
                 >
-                  SABS approved
+                  SABS Tested
                 </a>
               </div>
             </div>
