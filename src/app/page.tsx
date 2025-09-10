@@ -625,7 +625,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center text-sm text-gray-500">
               <Award size={16} className="mr-2" />
-              ISO 9001 Certified
+              SABS approved
             </div>
           </div>
           
@@ -648,7 +648,7 @@ const Footer = () => {
                 <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href="mailto:info@orbitx.co.za">info@orbitx.co.za</a>
               </p>
               <p>
-                <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('021 879 1483')}>021 879 1483</a>
+                <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('+27 21 879 1483')}>+27 21 879 1483</a>
               </p>
             </div>
           </div>
