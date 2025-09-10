@@ -25,7 +25,7 @@ export default function NeptuneProductPage() {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="relative py-16 md:py-20 bg-gray-900 overflow-hidden">
+        <section id="neptune" className="relative py-16 md:py-20 bg-gray-900 overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
             <motion.div 
@@ -196,6 +196,39 @@ export default function NeptuneProductPage() {
           </div>
         </section>
 
+        {/* Graphs */}
+        <section id="graphs" className="py-12 bg-black">
+          <div className="container mx-auto px-6">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">Graphs</h2>
+            <p className="text-gray-400 mb-8">Visualizations derived from the Neptune specification data.</p>
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* 1. Light Survival Rate Curve */}
+              <GraphCard id="survival-curve" title="Light Survival Rate Curve" subtitle="Time (×1000 h) vs Light Survival (%)">
+                <SurvivalCurve />
+              </GraphCard>
+
+              {/* 2. Lumen Maintenance Curve (L70) */}
+              <GraphCard id="lumen-maintenance" title="Lumen Maintenance Curve (L70)" subtitle="Time (×1000 h) vs Lumen Output (%)">
+                <LumenMaintenance />
+              </GraphCard>
+
+              {/* 3. Type A Lighting (CRI vs GAI) */}
+              <GraphCard id="light-quality" title="Type A Lighting*" subtitle="Colour Rendering Index (CRI) vs Gamut Area Index (GAI)">
+                <>
+                  <CRIvsGAI />
+                  <p className="text-[11px] text-gray-500 mt-2">*Type A Lighting as defined by the Lighting Research Centre, New York</p>
+                </>
+              </GraphCard>
+
+              {/* 4. Spectral Power Distribution */}
+              <GraphCard id="spd" title="Spectral Power Distribution (SPD)" subtitle="Wavelength (nm) vs Relative Power">
+                <SPD />
+              </GraphCard>
+            </div>
+          </div>
+        </section>
+
         {/* Model Codes & Packaging */}
         <section className="py-12 bg-black">
           <div className="container mx-auto px-6">
@@ -340,5 +373,201 @@ function SpecCard({ title, items }: { title: string, items: string[] }) {
         ))}
       </ul>
     </div>
+  )
+}
+
+function GraphCard({ id, title, subtitle, children }: { id: string, title: string, subtitle?: string, children: React.ReactNode }) {
+  return (
+    <div id={id} className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <h3 className="text-lg font-semibold mb-1">{title}</h3>
+      {subtitle && <p className="text-gray-400 text-sm mb-4">{subtitle}</p>}
+      <div className="w-full overflow-hidden">
+        {children}
+      </div>
+    </div>
+  )
+}
+
+// Helpers
+function scale(v: number, d0: number, d1: number, r0: number, r1: number) {
+  if (d1 === d0) return r0
+  const t = (v - d0) / (d1 - d0)
+  return r0 + t * (r1 - r0)
+}
+
+// 1. Light Survival Rate Curve
+function SurvivalCurve() {
+  // Values aligned with provided chart (gradual decline at end-of-life)
+  const data = [
+    { x: 0, y: 99 },
+    { x: 20, y: 99 },
+    { x: 40, y: 99 },
+    { x: 60, y: 99 },
+    { x: 80, y: 98 },
+    { x: 90, y: 92 },
+    { x: 100, y: 86 },
+  ]
+  const W = 520, H = 300, pad = 44
+  const xMin = 0, xMax = 100, yMin = 0, yMax = 100
+  const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
+  const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
+  const path = data.map((p, i) => `${i === 0 ? 'M' : 'L'} ${x(p.x)},${y(p.y)}`).join(' ')
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
+  <Axes W={W} H={H} pad={pad} xLabel="Time (1000 hours)" yLabel="Light Survival (%)" yTicks={[0,20,40,60,80,100]} xTicks={[0,20,40,60,80,100]} />
+      <path d={path} fill="none" stroke="#00c2ff" strokeWidth={2.5} />
+    </svg>
+  )
+}
+
+// 2. Lumen Maintenance Curve (L70)
+function LumenMaintenance() {
+  // Values aligned with provided graph (linear decline to ~65% at 80k hours)
+  const data = [
+    [0,98], [80,65]
+  ].map(d => ({ x: d[0], y: d[1] }))
+  const W = 520, H = 300, pad = 44
+  const xMin = 0, xMax = 80, yMin = 0, yMax = 100
+  const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
+  const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
+  const path = data.map((p, i) => `${i === 0 ? 'M' : 'L'} ${x(p.x)},${y(p.y)}`).join(' ')
+  // L70 reference (horizontal dashed line at 70%)
+  const l70y = y(70)
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
+      <Axes W={W} H={H} pad={pad} xLabel="Time (1000 hours)" yLabel="Lumen Output (%)" yTicks={[0,20,40,60,80,100]} xTicks={[0,10,20,30,40,50,60,70,80]} />
+      <path d={path} fill="none" stroke="#00c2ff" strokeWidth={2.5} />
+      {/* L70 horizontal line */}
+      <line x1={x(0)} y1={l70y} x2={x(80)} y2={l70y} stroke="#ff4d4f" strokeDasharray="6 6" />
+      <text x={x(10)} y={l70y - 6} fontSize={12} fill="#ff4d4f">L70</text>
+    </svg>
+  )
+}
+
+// 3. Light Quality Scatter Plot (CRI vs GAI)
+function CRIvsGAI() {
+  const point = { x: 83, y: 96 } // OrbitX
+  const W = 520, H = 300, pad = 44
+  // Domain as per chart (0..100), we’ll focus visually near upper-right
+  const xMin = 0, xMax = 100, yMin = 0, yMax = 100
+  const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
+  const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
+
+  // Type A shaded region: CRI >= 83 (vertical band from 83 to 100) with full GAI range
+  const band = `M ${x(83)},${y(0)} L ${x(100)},${y(0)} L ${x(100)},${y(100)} L ${x(83)},${y(100)} Z`
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
+      <Axes W={W} H={H} pad={pad} xLabel="Colour Rendering Index (CRI)" yLabel="Gamut Area Index (GAI)" yTicks={[0,20,40,60,80,100]} xTicks={[0,20,40,60,80,100]} />
+      {/* Shaded Type A region */}
+      <path d={band} fill="rgba(0, 122, 255, 0.15)" />
+      {/* Dashed guides: horizontal at 96 and vertical at 83 */}
+      <line x1={x(0)} y1={y(96)} x2={x(100)} y2={y(96)} stroke="#9aa0a6" strokeDasharray="6 6" opacity={0.6} />
+      <line x1={x(83)} y1={y(0)} x2={x(83)} y2={y(100)} stroke="#9aa0a6" strokeDasharray="6 6" opacity={0.6} />
+      {/* OrbitX point */}
+      <circle cx={x(point.x)} cy={y(point.y)} r={7} fill="#111827" stroke="#ff5a5f" strokeWidth={3} />
+      {/* Dashed arrow to the point (blue only, longer tail) */}
+      <defs>
+        <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#3b82f6" />
+        </marker>
+      </defs>
+      {(() => {
+        // Start just outside the callout's top-right corner, angled downward toward the data point
+        const startX = x(68) + 6
+        const startY = y(76)
+        const d = `M ${startX},${startY} L ${x(point.x-2)},${y(point.y-2)}`
+        return (
+          <path d={d} stroke="#3b82f6" strokeWidth={2.5} strokeDasharray="6 6" strokeLinecap="round" fill="none" markerEnd="url(#arrowBlue)" />
+        )
+      })()}
+      {/* Callout box */}
+  {/* Callout with extra padding */}
+  <rect x={x(40)} y={y(74)} width={x(68)-x(40)} height={y(50)-y(74)} rx={12} ry={12} fill="#0b0f19" stroke="#3b82f6" opacity={0.95} />
+  <text x={x(54)} y={y(66)} fontSize={12} textAnchor="middle" fill="#e5e7eb">
+        OrbitX
+      </text>
+  <text x={x(54)} y={y(60)} fontSize={12} textAnchor="middle" fill="#e5e7eb">
+        CRI 83, GAI 96
+      </text>
+  <text x={x(54)} y={y(54)} fontSize={12} textAnchor="middle" fill="#e5e7eb">
+        Type A Lighting
+      </text>
+    </svg>
+  )
+}
+
+// 4. Spectral Power Distribution
+function SPD() {
+  // Values shaped to match the provided SPD image: sharp blue peak ~455 nm,
+  // dip near 485 nm, then a broad green/yellow hump peaking ~0.6 around 560–600 nm,
+  // tapering into the red region.
+  const data = [
+    [360,0.00],[380,0.00],[400,0.02],[420,0.08],[440,0.35],[455,1.00],[470,0.70],[485,0.30],
+    [500,0.45],[520,0.55],[540,0.58],[560,0.60],[580,0.58],[600,0.56],[610,0.55],[630,0.42],
+    [650,0.28],[670,0.18],[690,0.10],[710,0.04],[735,0.00]
+  ].map(d => ({ x: d[0], y: d[1] }))
+  const W = 520, H = 300, pad = 44
+  const xMin = 360, xMax = 735, yMin = 0, yMax = 1
+  const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
+  const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
+  const linePath = data.map((p, i) => `${i === 0 ? 'M' : 'L'} ${x(p.x)},${y(p.y)}`).join(' ')
+  const areaPath = `M ${x(data[0].x)},${y(0)} L ${x(data[0].x)},${y(data[0].y)} ` +
+    data.slice(1).map(p => `L ${x(p.x)},${y(p.y)}`).join(' ') + ` L ${x(data[data.length-1].x)},${y(0)} Z`
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
+      <defs>
+        {/* Horizontal spectrum gradient */}
+        <linearGradient id="spdGradient" x1={pad} x2={W - pad} y1={0} y2={0} gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#2a00ff" />
+          <stop offset={`${((435-360)/(xMax-xMin))*100}%`} stopColor="#0057ff" />
+          <stop offset={`${((485-360)/(xMax-xMin))*100}%`} stopColor="#00c2ff" />
+          <stop offset={`${((510-360)/(xMax-xMin))*100}%`} stopColor="#00ff6a" />
+          <stop offset={`${((560-360)/(xMax-xMin))*100}%`} stopColor="#e4ff00" />
+          <stop offset={`${((585-360)/(xMax-xMin))*100}%`} stopColor="#ffb300" />
+          <stop offset={`${((610-360)/(xMax-xMin))*100}%`} stopColor="#ff7a00" />
+          <stop offset={`${((660-360)/(xMax-xMin))*100}%`} stopColor="#ff0000" />
+          <stop offset="100%" stopColor="#4b0000" />
+        </linearGradient>
+      </defs>
+  <Axes W={W} H={H} pad={pad} xLabel="Wavelength (nm)" yLabel="P (relative)" yTicks={[0,0.25,0.5,0.75,1]} xTicks={[360,485,610,735]} />
+      <path d={areaPath} fill="url(#spdGradient)" opacity={0.95} />
+      <path d={linePath} fill="none" stroke="#111" strokeDasharray="5 4" strokeOpacity={0.6} strokeWidth={2} />
+    </svg>
+  )
+}
+
+// Axes component
+function Axes({ W, H, pad, xLabel, yLabel, xTicks, yTicks }: { W: number, H: number, pad: number, xLabel: string, yLabel: string, xTicks: (number)[], yTicks: (number)[] }) {
+  const xMin = pad, xMax = W - pad, yMin = H - pad, yMax = pad
+  // Functions to map back from domain ticks to pixels require domains; for simplicity, infer from labels grid lines evenly spaced
+  // Instead, accept ticks as domain values and compute scale based on min/max provided by ticks
+  const sx = (v: number) => scale(v, Math.min(...xTicks), Math.max(...xTicks), xMin, xMax)
+  const sy = (v: number) => scale(v, Math.min(...yTicks), Math.max(...yTicks), yMin, yMax)
+  return (
+    <g>
+      {/* Axes lines */}
+      <line x1={xMin} y1={yMin} x2={xMax} y2={yMin} stroke="#444" />
+      <line x1={xMin} y1={yMin} x2={xMin} y2={yMax} stroke="#444" />
+      {/* X ticks */}
+      {xTicks.map((t, i) => (
+        <g key={`xt-${i}`}>
+          <line x1={sx(t)} y1={yMin} x2={sx(t)} y2={yMin + 6} stroke="#555" />
+          <text x={sx(t)} y={yMin + 18} textAnchor="middle" fontSize={11} fill="#9aa0a6">{t}</text>
+          <line x1={sx(t)} y1={yMin} x2={sx(t)} y2={yMax} stroke="#222" />
+        </g>
+      ))}
+      {/* Y ticks */}
+      {yTicks.map((t, i) => (
+        <g key={`yt-${i}`}>
+          <line x1={xMin - 6} y1={sy(t)} x2={xMin} y2={sy(t)} stroke="#555" />
+          <text x={xMin - 10} y={sy(t) + 4} textAnchor="end" fontSize={11} fill="#9aa0a6">{t}</text>
+          <line x1={xMin} y1={sy(t)} x2={xMax} y2={sy(t)} stroke="#222" />
+        </g>
+      ))}
+      {/* Labels */}
+      <text x={(xMin + xMax) / 2} y={H - 8} textAnchor="middle" fontSize={12} fill="#bbb">{xLabel}</text>
+      <text x={12} y={(yMin + yMax) / 2} textAnchor="middle" fontSize={12} fill="#bbb" transform={`rotate(-90 12 ${(yMin + yMax) / 2})`}>{yLabel}</text>
+    </g>
   )
 }
