@@ -53,8 +53,19 @@ export default function AnalyticsPage() {
     }
   }, [])
 
-  const loadAnalytics = () => {
-    const visits = JSON.parse(localStorage.getItem('site-visits') || '[]') as VisitData[]
+  const loadAnalytics = async () => {
+    // Prefer server analytics; fallback to any local cache if API unavailable
+    let visits: VisitData[] = []
+    try {
+      const res = await fetch('/api/analytics', { cache: 'no-store' })
+      if (res.ok) {
+        const data = await res.json()
+        visits = (data.visits || []) as VisitData[]
+      }
+    } catch {}
+    if (visits.length === 0) {
+      visits = JSON.parse(localStorage.getItem('site-visits') || '[]') as VisitData[]
+    }
     
     if (visits.length === 0) {
       setAnalytics({
@@ -121,15 +132,27 @@ export default function AnalyticsPage() {
     }
   }
 
-  const clearData = () => {
-    if (confirm('Are you sure you want to clear all analytics data?')) {
-      localStorage.removeItem('site-visits')
-      loadAnalytics()
-    }
+  const clearData = async () => {
+    if (!confirm('Are you sure you want to clear all analytics data?')) return
+    try {
+      await fetch('/api/analytics', { method: 'DELETE', headers: { 'x-analytics-admin': 'orbitx2025' } })
+    } catch {}
+    localStorage.removeItem('site-visits')
+    loadAnalytics()
   }
 
-  const exportToCSV = () => {
-    const visits = JSON.parse(localStorage.getItem('site-visits') || '[]') as VisitData[]
+  const exportToCSV = async () => {
+    let visits: VisitData[] = []
+    try {
+      const res = await fetch('/api/analytics', { cache: 'no-store' })
+      if (res.ok) {
+        const data = await res.json()
+        visits = (data.visits || []) as VisitData[]
+      }
+    } catch {}
+    if (visits.length === 0) {
+      visits = JSON.parse(localStorage.getItem('site-visits') || '[]') as VisitData[]
+    }
     
     if (visits.length === 0) {
       alert('No data to export')

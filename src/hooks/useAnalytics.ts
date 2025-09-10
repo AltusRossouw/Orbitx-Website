@@ -88,14 +88,20 @@ export default function useAnalytics() {
         }
       }
 
-      // Get existing visits
-      const visits = JSON.parse(localStorage.getItem('site-visits') || '[]')
-      visits.push(visitData)
-
-      // Keep only last 1000 visits to prevent storage bloat
-      const recentVisits = visits.slice(-1000)
-      
-      localStorage.setItem('site-visits', JSON.stringify(recentVisits))
+      // Send to server-backed analytics
+      try {
+        await fetch('/api/analytics', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(visitData)
+        })
+      } catch (e) {
+        // Network error fallback: store locally
+        const visits = JSON.parse(localStorage.getItem('site-visits') || '[]')
+        visits.push(visitData)
+        const recentVisits = visits.slice(-1000)
+        localStorage.setItem('site-visits', JSON.stringify(recentVisits))
+      }
     }
 
     // Small delay to ensure page is loaded
