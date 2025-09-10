@@ -85,16 +85,6 @@ export default function NeptuneProductPage() {
           </div>
         </section>
 
-        {/* Dimensions */}
-        <section className="py-12 bg-black">
-          <div className="container mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Dimensions</h2>
-            <div className="bg-transparent border border-gray-800 rounded-xl overflow-hidden">
-              <DimensionsDiagram imageSrc={image} />
-            </div>
-          </div>
-        </section>
-
         {/* Configurations & Performance */}
         <section className="py-12 bg-black">
           <div className="container mx-auto px-6">
@@ -203,6 +193,25 @@ export default function NeptuneProductPage() {
                 'Optional Radar Motion Sensor: Programmable sensitivity and time on'
               ]} />
             </div>
+          </div>
+        </section>
+
+        {/* Dimensions (transparent background image) */}
+        <section className="py-12 bg-black">
+          <div className="container mx-auto px-6">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">Dimensions</h2>
+            <div className="relative rounded-xl border border-gray-800 bg-black/40 overflow-hidden">
+              <div className="relative w-full h-72 md:h-96">
+                <Image
+                  src="/products/neptune/images/neptune-dimensions.png"
+                  alt="Neptune dimensions"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+            <p className="text-gray-500 text-xs mt-2">Image background is transparent to blend with the site theme.</p>
           </div>
         </section>
 
