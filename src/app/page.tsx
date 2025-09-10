@@ -64,22 +64,23 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div className="flex flex-col items-center mb-6">
+            {/* Accessible heading for SEO, visually hidden */}
+            <h1 className="sr-only">OrbitX — Direct Drive LED Lights</h1>
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-6"
             >
-              <LogoSvg className="h-16 md:h-20 w-auto" />
+              <Image
+                src="/images/orbitx-logo.svg"
+                alt="OrbitX"
+                width={420}
+                height={120}
+                className="h-16 md:h-24 w-auto"
+                priority
+              />
             </motion.div>
-            <motion.h1 
-              className="text-3xl md:text-5xl font-bold text-gray-300"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              Direct Drive LED Lights
-            </motion.h1>
           </motion.div>
           
           <motion.p 
