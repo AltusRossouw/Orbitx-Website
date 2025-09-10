@@ -23,6 +23,13 @@ import {
 import { products, clientImages, companyAssets } from '../data/products'
 
 // Components
+// Helper to convert SA numbers like "021 879 1483" or "071 581 5751" to tel:+27... format
+const toTelHref = (display: string) => {
+  const digits = display.replace(/\D/g, '')
+  const intl = digits.startsWith('0') ? `+27${digits.slice(1)}` : (digits.startsWith('27') ? `+${digits}` : `+${digits}`)
+  return `tel:${intl}`
+}
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -45,10 +52,14 @@ const Header = () => {
       <div className="container mx-auto px-6 py-4">
         <nav className="flex items-center justify-between">
           <motion.div 
-            className="text-2xl font-bold text-orbitx-accent"
+            className="flex items-center"
             whileHover={{ scale: 1.05 }}
           >
-            OrbitX
+            <img
+              src="/images/orbitx-logo.svg"
+              alt="OrbitX Logo"
+              className="h-8 w-auto"
+            />
           </motion.div>
 
           {/* Desktop Menu */}
@@ -117,19 +128,28 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.h1 
-            className="text-5xl md:text-7xl font-bold mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span className="text-white">Orbit</span>
-            <span className="text-orbitx-accent">X</span>
-            <br />
-            <span className="text-3xl md:text-5xl text-gray-300">
+          <motion.div className="flex flex-col items-center mb-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mb-6"
+            >
+              <img
+                src="/images/orbitx-logo.svg"
+                alt="OrbitX Logo"
+                className="h-16 md:h-20 w-auto"
+              />
+            </motion.div>
+            <motion.h1 
+              className="text-3xl md:text-5xl font-bold text-gray-300"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               Direct Drive LED Lights
-            </span>
-          </motion.h1>
+            </motion.h1>
+          </motion.div>
           
           <motion.p 
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
@@ -507,9 +527,15 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg">Phone</h4>
-                  <p className="text-gray-400">Sales: 021 879 1483</p>
-                  <p className="text-gray-400">Ian Manchip: 071 581 5751</p>
-                  <p className="text-gray-400">Frans Rossouw: 082 883 5008</p>
+                  <p className="text-gray-400">
+                    Sales: <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('021 879 1483')}>021 879 1483</a>
+                  </p>
+                  <p className="text-gray-400">
+                    Ian Manchip: <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('071 581 5751')}>071 581 5751</a>
+                  </p>
+                  <p className="text-gray-400">
+                    Frans Rossouw: <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('082 883 5008')}>082 883 5008</a>
+                  </p>
                 </div>
               </div>
               
@@ -519,7 +545,9 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg">Email</h4>
-                  <p className="text-gray-400">info@orbitx.co.za</p>
+                  <p className="text-gray-400">
+                    <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href="mailto:info@orbitx.co.za">info@orbitx.co.za</a>
+                  </p>
                 </div>
               </div>
             </div>
@@ -576,7 +604,13 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-bold text-orbitx-accent mb-4">OrbitX</h3>
+            <div className="mb-4">
+              <img
+                src="/images/orbitx-logo.svg"
+                alt="OrbitX Logo"
+                className="h-10 w-auto"
+              />
+            </div>
             <p className="text-gray-400 mb-4">
               Leading South African manufacturer of Direct Drive LED lighting solutions 
               for industrial and commercial applications.
@@ -602,8 +636,12 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <div className="space-y-2 text-gray-400">
               <p>13 Suid Street, Southern Paarl</p>
-              <p>info@orbitx.co.za</p>
-              <p>021 879 1483</p>
+              <p>
+                <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href="mailto:info@orbitx.co.za">info@orbitx.co.za</a>
+              </p>
+              <p>
+                <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href={toTelHref('021 879 1483')}>021 879 1483</a>
+              </p>
             </div>
           </div>
         </div>
