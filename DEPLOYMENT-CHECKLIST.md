@@ -12,12 +12,15 @@
 - [x] Health check endpoint created (`/api/health`)
 
 ### **Docker Configuration**
-- [x] Dockerfile optimized with multi-stage build
+- [x] Dockerfile optimized with single-stage build for reliability
+- [x] Alpine Linux compatibility issues resolved
+- [x] Sharp dependency moved to optionalDependencies
 - [x] Non-root user configured for security
 - [x] Proper file permissions set
 - [x] Resource limits defined
 - [x] Health checks configured
 - [x] Logging configuration optimized
+- [x] SWC dependencies fixed in package-lock.json
 
 ### **Portainer Setup**
 - [x] Docker Compose file production-ready
@@ -40,7 +43,7 @@
 ### **Step 1: Commit & Push Changes**
 ```bash
 git add .
-git commit -m "Production-ready: Portainer deployment configuration"
+git commit -m "Fix Docker build: Use simplified Dockerfile for better Alpine compatibility"
 git push origin main
 ```
 
