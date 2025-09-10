@@ -86,7 +86,7 @@ export default function TeamPage() {
         </section>
 
         {/* CTA */}
-  <section className="pt-16 pb-0 bg-gray-900">
+        <section className="py-16 bg-gray-900">
           <div className="container mx-auto px-6 text-center">
             <p className="text-gray-300 mb-6">Want to work with us?</p>
             <Link href="/#contact" className="px-6 py-3 bg-orbitx-accent text-black font-semibold rounded-lg hover:bg-white transition">Get in touch</Link>
