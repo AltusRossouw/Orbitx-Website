@@ -30,6 +30,9 @@ const toTelHref = (display: string) => {
   return `tel:${intl}`
 }
 
+// Helper to generate a Google Maps link for a given address
+const toMapsHref = (address: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+
 // Inline logo SVG to avoid static asset serving issues in some deployments
 const LogoSvg = ({ className = 'h-8 w-auto', title = 'OrbitX Logo' }: { className?: string; title?: string }) => (
   <svg
@@ -529,7 +532,16 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg">Address</h4>
-                  <p className="text-gray-400">13 Suid Street, Southern Paarl</p>
+                  <p className="text-gray-400">
+                    <a
+                      href={toMapsHref('13 Suid Street, Southern Paarl')}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-orbitx-accent underline-offset-2 hover:underline"
+                    >
+                      13 Suid Street, Southern Paarl
+                    </a>
+                  </p>
                 </div>
               </div>
               
@@ -643,7 +655,16 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <div className="space-y-2 text-gray-400">
-              <p>13 Suid Street, Southern Paarl</p>
+              <p>
+                <a
+                  href={toMapsHref('13 Suid Street, Southern Paarl')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-orbitx-accent underline-offset-2 hover:underline"
+                >
+                  13 Suid Street, Southern Paarl
+                </a>
+              </p>
               <p>
                 <a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href="mailto:info@orbitx.co.za">info@orbitx.co.za</a>
               </p>
@@ -656,7 +677,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-8 text-center">
           <p className="text-gray-500">
-            © 2024 OrbitX Direct Drive LED Lights. All rights reserved.
+            © 2025 OrbitX Direct Drive LED Lights. All rights reserved.
           </p>
         </div>
       </div>
