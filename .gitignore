@@ -150,6 +150,9 @@ $RECYCLE.BIN/
 # Turbo
 .turbo
 
+#Files
+Frans files/
+
 # Lock files (keep package-lock.json for consistent builds)
 # Uncomment the next line if you want to ignore lock files
 # package-lock.json
