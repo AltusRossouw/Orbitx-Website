@@ -17,8 +17,8 @@ Scopes to consider per product:
 
 ## Status
 - [x] Neptune (`/products/neptune`)
-- [ ] Neptune EX (`/products/neptune-ex`)
-- [ ] Titan (`/products/titan`)
+- [x] Neptune EX (`/products/neptune-ex`)
+- [x] Titan (`/products/titan`)
 - [ ] Rhea Bulkhead (`/products/rhea-bulkhead`)
 - [ ] Phoebe Bulkhead (`/products/phoebe-bulkhead`)
 - [ ] PUCK Seamless (`/products/puck-seamless`)

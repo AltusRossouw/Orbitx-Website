@@ -67,7 +67,7 @@ export default function ProductsPage() {
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {products.map((product, index) => {
-                const implemented = new Set(['neptune', 'neptune-ex'])
+                const implemented = new Set(['neptune', 'neptune-ex', 'titan'])
                 const href = implemented.has(product.id) ? `/products/${product.id}` : undefined
                 const Card = (
                   <motion.div
