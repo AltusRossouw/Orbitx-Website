@@ -14,37 +14,20 @@ const toTelHref = (display: string) => {
   return `tel:${intl}`
 }
 
-export default function NeptuneProductPage() {
-  const neptune = products.find(p => p.id === 'neptune')
-  const image = neptune?.image || '/images/products/Neptune-800x416.png'
-  const specPdf = neptune?.pdfSpec || '/pdfs/OrbitX-Neptune-specifications.pdf'
-
-  // Map available IES files by length-power key (e.g., '600-9') to filenames in public/products/neptune/docs
-  const IES_BASE = '/products/neptune/docs/'
+export default function NeptuneExProductPage() {
+  const ex = products.find(p => p.id === 'neptune-ex')
+  const image = ex?.image || '/images/products/91of1-800x533.png'
+  const specPdf = ex?.pdfSpec || '/pdfs/OrbitX-Neptune-Ex-specifications.pdf'
+  const name = ex?.name || 'Neptune Ex Rated'
+  const type = ex?.type || 'INTEGRATED IP68 LINEAR LED LIGHT'
+  // IES mapping for EX variants present in docs
+  const IES_BASE = '/products/neptune-ex/docs/'
   const iesFiles: Record<string, string> = {
-    // 600mm
-    '600-9': 'OrbitX Neptune 600mm 9W.ies',
-    '600-18': 'OrbitX Neptune 600mm 18W.ies',
-    '600-27': 'OrbitX Neptune 600mm 27W.ies',
-    '600-36': 'OrbitX Neptune 600mm 36W.ies',
-    '600-45': 'OrbitX Neptune 600mm 45W.ies',
-    // also present but not in table: 66W, 104W
     // 1200mm
-    '1200-16': 'OrbitX Neptune 1200mm 16W.ies',
-    '1200-20': 'OrbitX Neptune 1200mm 20W.ies',
-    '1200-32': 'OrbitX Neptune 1200mm 32W.ies',
-    '1200-40': 'OrbitX Neptune 1200mm 40W.ies',
-    '1200-48': 'OrbitX Neptune 1200mm 48W.ies',
-    '1200-60': 'OrbitX Neptune 1200mm 60W.ies',
-    '1200-80': 'OrbitX Neptune 1200mm 80W 10000lm.ies',
-    // also present but not in table: 100W
-    // 1500mm (available IES powers differ from table values)
-    '1500-22': 'OrbitX Neptune 1500mm 22W.ies',
-    '1500-44': 'OrbitX Neptune 1500mm 44W.ies',
-    '1500-66': 'OrbitX Neptune 1500mm 66W.ies',
-    '1500-88': 'OrbitX Neptune 1500mm 88W.ies',
-    // 2400mm
-    '2400-160': 'OrbitX Neptune 2400mm 160W.ies',
+    '1200-16': 'OrbitX Neptune EX 1200mm 16W.ies',
+    '1200-32': 'OrbitX Neptune EX 1200mm 32W.ies',
+    '1200-48': 'OrbitX Neptune EX 1200mm 48W.ies',
+    '1200-64': 'OrbitX Neptune EX 1200mm 64W.ies',
   }
 
   return (
@@ -53,7 +36,7 @@ export default function NeptuneProductPage() {
 
       <main className="flex-1">
         {/* Hero */}
-        <section id="neptune" className="relative py-16 md:py-20 bg-gray-900 overflow-hidden">
+        <section id="neptune-ex" className="relative py-16 md:py-20 bg-gray-900 overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
             <motion.div 
@@ -77,16 +60,16 @@ export default function NeptuneProductPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  Neptune
+                  {name}
                 </motion.h1>
-                <p className="text-orbitx-accent text-sm font-medium mb-3">INTEGRATED IP65 LINEAR LED LIGHT</p>
+                <p className="text-orbitx-accent text-sm font-medium mb-3">{type}</p>
                 <motion.p 
                   className="text-lg text-gray-300 mb-6 max-w-xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  Weather-resistant integrated LED lighting built on OrbitX Direct Drive technology. Dust, moisture and vapour proof for demanding environments.
+                  OrbitX Direct Drive Technology onboard. Explosion protected for hazardous areas. Zone 2: Ex ec IIC T5 Gc IP68. Zones 21 and 22: Ex tb IIIC T85 °C Db IP68.
                 </motion.p>
                 <div className="flex flex-wrap gap-3">
                   <motion.a
@@ -107,13 +90,11 @@ export default function NeptuneProductPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <Image src={image} alt="Neptune" fill className="object-contain p-6" />
+                <Image src={image} alt={name} fill className="object-contain p-6" />
               </motion.div>
             </div>
           </div>
         </section>
-
-        
 
         {/* Specs Sections */}
         <section className="py-12 bg-black">
@@ -143,7 +124,7 @@ export default function NeptuneProductPage() {
                 'Minimum Sustained Voltage: No minimum limit, operational from 150V',
                 'Maximum Sustained Voltage: 250V for 2 minutes',
                 'On/Off Switching: Unlimited',
-                'Delay to Full Brightness: Immediate'
+                'Explosion protection: Ex ec IIC T5 Gc IP68 & Ex tb IIIC T85 °C Db IP68'
               ]} />
             </div>
 
@@ -157,15 +138,15 @@ export default function NeptuneProductPage() {
                 'Risk of Breakage: Low, polycarbonate housing extruded to 1mm (no glass)',
                 'Electrical Standards: IEC60598-1, IEC60598-2-5 compliant',
                 'Surge Protection: 1.5kV',
-                'Fire Rating: UL-94 VO compliant (no flaming droplets)',
-                'IP Rating: IP65',
+                'Fire Rating: UL-94 V0 compliant (no flaming droplets)',
+                'IP Rating: IP68',
                 'SABS: Safety tests passed'
               ]} />
 
               <SpecCard title="Interference Compliance" items={[
                 'WiFi, Barcode Scanner, Radio Frequency: No interference',
                 'Standards: IEC 61547, SANS 215 (CISPR15) compliant',
-                'Total Harmonic Distortion: IEC 61000-3-2 Class C Compliant'
+                'Total Harmonic Distortion: IEC 61000-3-2 Class D Compliant'
               ]} />
 
               <SpecCard title="Additional Options" items={[
@@ -177,15 +158,15 @@ export default function NeptuneProductPage() {
           </div>
         </section>
 
-        {/* Dimensions (transparent background image) */}
+        {/* Dimensions */}
         <section className="py-12 bg-gray-900">
           <div className="container mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Dimensions</h2>
             <div className="relative rounded-xl border border-gray-800 bg-black overflow-hidden">
               <div className="relative w-full h-72 md:h-96">
                 <Image
-                  src="/products/neptune/images/Neptune-Dimensions-numbers.png"
-                  alt="Neptune dimensions"
+                  src="/products/neptune-ex/images/neptune-ex-dimensions.png"
+                  alt="Neptune Ex Rated dimensions"
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -196,30 +177,22 @@ export default function NeptuneProductPage() {
         </section>
 
         {/* Graphs */}
-  <section id="graphs" className="py-12 bg-gray-900">
+        <section id="graphs" className="py-12 bg-black">
           <div className="container mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Graphs</h2>
-
             <div className="grid lg:grid-cols-2 gap-8">
-              {/* 1. Light Survival Rate Curve */}
               <GraphCard id="survival-curve" title="Light Survival Rate Curve" subtitle="Time (×1000 h) vs Light Survival (%)">
                 <SurvivalCurve />
               </GraphCard>
-
-              {/* 2. Lumen Maintenance Curve (L70) */}
               <GraphCard id="lumen-maintenance" title="Lumen Maintenance Curve (L70)" subtitle="Time (×1000 h) vs Lumen Output (%)">
                 <LumenMaintenance />
               </GraphCard>
-
-              {/* 3. Type A Lighting (CRI vs GAI) */}
               <GraphCard id="light-quality" title="Type A Lighting*" subtitle="Colour Rendering Index (CRI) vs Gamut Area Index (GAI)">
                 <>
                   <CRIvsGAI />
                   <p className="text-[11px] text-gray-500 mt-2">*Type A Lighting as defined by the Lighting Research Centre, New York</p>
                 </>
               </GraphCard>
-
-              {/* 4. Spectral Power Distribution */}
               <GraphCard id="spd" title="Spectral Power Distribution (SPD)" subtitle="Wavelength (nm) vs Relative Power">
                 <SPD />
               </GraphCard>
@@ -240,30 +213,22 @@ export default function NeptuneProductPage() {
                     <th className="text-center p-3 font-semibold">Luminous Flux (lm)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-800">
+                <tbody className="divide-y divide-gray-800 text-gray-300">
                   {[
                     ['600 mm', '9', '1000'],
                     ['', '18', '2000'],
                     ['', '27', '3000'],
                     ['', '36', '4000'],
                     ['', '45', '5000'],
-                    ['1200 mm', '16', '2000'],
+                    ['1200 mm', '16', '7500*'],
+                    ['', '20', '2500'],
                     ['', '32', '4000'],
+                    ['', '40', '5000'],
                     ['', '48', '6000'],
-                    ['', '64', '8000'],
+                    ['', '60', '7500'],
                     ['', '80', '10000'],
-                    ['1200 mm*', '96', '12000'],
-                    ['', '112', '15000'],
-                    ['', '128', '17000'],
-                    ['1500 mm', '19', '2200'],
-                    ['', '38', '4400'],
-                    ['', '57', '6600'],
-                    ['', '76', '8800'],
-                    ['2400 mm', '32', '4000'],
-                    ['', '64', '8000'],
-                    ['', '96', '12000']
                   ].map((row, i) => (
-                    <tr key={i} className="text-gray-300">
+                    <tr key={i}>
                       <td className="p-3">{row[0]}</td>
                       <td className="p-3 text-center">{row[1]}</td>
                       <td className="p-3 text-center">{row[2]}</td>
@@ -272,7 +237,7 @@ export default function NeptuneProductPage() {
                 </tbody>
               </table>
             </div>
-            <p className="text-gray-500 text-xs mt-2">* Indicates the Neptune Supersize housing.</p>
+            <p className="text-gray-500 text-xs mt-2">* Note: The 16W 1200mm model&apos;s lumen output appears inconsistent in the source document. Please verify with manufacturer.</p>
           </div>
         </section>
 
@@ -301,20 +266,12 @@ export default function NeptuneProductPage() {
                     ['OXNT0600365', '600', '36 W', '8', '1280 × 185 × 185', '7.38'],
                     ['OXNT0600455', '600', '45 W', '8', '1280 × 185 × 185', '7.53'],
                     ['OXNT1200165', '1200', '16 W', '4', '1280 × 185 × 185', '6.56'],
+                    ['OXNT1200205', '1200', '20 W', '4', '1280 × 185 × 185', '6.56'],
                     ['OXNT1200325', '1200', '32 W', '4', '1280 × 185 × 185', '6.71'],
+                    ['OXNT1200405', '1200', '40 W', '4', '1280 × 185 × 185', '6.71'],
                     ['OXNT1200485', '1200', '48 W', '4', '1280 × 185 × 185', '6.86'],
-                    ['OXNT1200645', '1200', '64 W', '4', '1280 × 185 × 185', '7.04'],
-                    ['OXNT1200805', '1200', '80 W', '4', '1280 × 185 × 185', '7.64'],
-                    ['OXNT1200965', '1200', '96 W', '4', '1280 × 185 × 185', '8.08'],
-                    ['OXNT12001125', '1200', '112 W', '4', '1280 × 185 × 185', '8.23'],
-                    ['OXNT12001285', '1200', '128 W', '4', '1280 × 185 × 185', '8.38'],
-                    ['OXNT1500195', '1500', '19 W', '4', '1850 × 185 × 185', '8.19'],
-                    ['OXNT1500385', '1500', '38 W', '4', '1850 × 185 × 185', '8.37'],
-                    ['OXNT1500575', '1500', '57 W', '4', '1850 × 185 × 185', '8.55'],
-                    ['OXNT1500765', '1500', '76 W', '4', '1850 × 185 × 185', '8.78'],
-                    ['OXNT2400325', '2400', '32 W', '4', '2480 × 185 × 185', '13.12'],
-                    ['OXNT2400645', '2400', '64 W', '4', '2480 × 185 × 185', '13.42'],
-                    ['OXNT2400965', '2400', '96 W', '4', '2480 × 185 × 185', '13.72']
+                    ['OXNT1200605', '1200', '60 W', '4', '1280 × 185 × 185', '6.86'],
+                    ['OXNT1200805', '1200', '80 W', '4', '1280 × 185 × 185', '7.04'],
                   ].map((row, i) => {
                     const lengthMm = row[1]
                     const powerW = parseInt(row[2].replace(/\D/g, ''))
@@ -347,7 +304,7 @@ export default function NeptuneProductPage() {
         </section>
       </main>
 
-      {/* Footer (same structure as other pages) */}
+      {/* Footer */}
       <footer className="bg-gray-900 border-t border-gray-800 py-12">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -446,16 +403,14 @@ function GraphCard({ id, title, subtitle, children }: { id: string, title: strin
   )
 }
 
-// Helpers
+// Shared helpers and graphs (copied from Neptune page for visual parity)
 function scale(v: number, d0: number, d1: number, r0: number, r1: number) {
   if (d1 === d0) return r0
   const t = (v - d0) / (d1 - d0)
   return r0 + t * (r1 - r0)
 }
 
-// 1. Light Survival Rate Curve
 function SurvivalCurve() {
-  // Values aligned with provided chart (gradual decline at end-of-life)
   const data = [
     { x: 0, y: 99 },
     { x: 20, y: 99 },
@@ -472,66 +427,50 @@ function SurvivalCurve() {
   const path = data.map((p, i) => `${i === 0 ? 'M' : 'L'} ${x(p.x)},${y(p.y)}`).join(' ')
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
-  <Axes W={W} H={H} pad={pad} xLabel="Time (1000 hours)" yLabel="Light Survival (%)" yTicks={[0,20,40,60,80,100]} xTicks={[0,20,40,60,80,100]} />
+      <Axes W={W} H={H} pad={pad} xLabel="Time (1000 hours)" yLabel="Light Survival (%)" yTicks={[0,20,40,60,80,100]} xTicks={[0,20,40,60,80,100]} />
       <path d={path} fill="none" stroke="#00c2ff" strokeWidth={2.5} />
     </svg>
   )
 }
 
-// 2. Lumen Maintenance Curve (L70)
 function LumenMaintenance() {
-  // Values aligned with provided graph (linear decline to ~65% at 80k hours)
-  const data = [
-    [0,98], [80,65]
-  ].map(d => ({ x: d[0], y: d[1] }))
+  const data = [ [0,98], [80,65] ].map(d => ({ x: d[0], y: d[1] }))
   const W = 520, H = 300, pad = 44
   const xMin = 0, xMax = 80, yMin = 0, yMax = 100
   const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
   const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
   const path = data.map((p, i) => `${i === 0 ? 'M' : 'L'} ${x(p.x)},${y(p.y)}`).join(' ')
-  // L70 reference (horizontal dashed line at 70%)
   const l70y = y(70)
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
       <Axes W={W} H={H} pad={pad} xLabel="Time (1000 hours)" yLabel="Lumen Output (%)" yTicks={[0,20,40,60,80,100]} xTicks={[0,10,20,30,40,50,60,70,80]} />
       <path d={path} fill="none" stroke="#00c2ff" strokeWidth={2.5} />
-      {/* L70 horizontal line */}
       <line x1={x(0)} y1={l70y} x2={x(80)} y2={l70y} stroke="#ff4d4f" strokeDasharray="6 6" />
       <text x={x(10)} y={l70y - 6} fontSize={12} fill="#ff4d4f">L70</text>
     </svg>
   )
 }
 
-// 3. Light Quality Scatter Plot (CRI vs GAI)
 function CRIvsGAI() {
-  const point = { x: 83, y: 96 } // OrbitX
+  const point = { x: 83, y: 96 }
   const W = 520, H = 300, pad = 44
-  // Domain as per chart (0..100), we’ll focus visually near upper-right
   const xMin = 0, xMax = 100, yMin = 0, yMax = 100
   const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
   const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
-
-  // Type A shaded region: CRI >= 83 (vertical band from 83 to 100) with full GAI range
   const band = `M ${x(83)},${y(0)} L ${x(100)},${y(0)} L ${x(100)},${y(100)} L ${x(83)},${y(100)} Z`
-
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
       <Axes W={W} H={H} pad={pad} xLabel="Colour Rendering Index (CRI)" yLabel="Gamut Area Index (GAI)" yTicks={[0,20,40,60,80,100]} xTicks={[0,20,40,60,80,100]} />
-      {/* Shaded Type A region */}
       <path d={band} fill="rgba(0, 122, 255, 0.15)" />
-      {/* Dashed guides: horizontal at 96 and vertical at 83 */}
       <line x1={x(0)} y1={y(96)} x2={x(100)} y2={y(96)} stroke="#9aa0a6" strokeDasharray="6 6" opacity={0.6} />
       <line x1={x(83)} y1={y(0)} x2={x(83)} y2={y(100)} stroke="#9aa0a6" strokeDasharray="6 6" opacity={0.6} />
-      {/* OrbitX point */}
       <circle cx={x(point.x)} cy={y(point.y)} r={7} fill="#111827" stroke="#ff5a5f" strokeWidth={3} />
-      {/* Dashed arrow to the point (blue only, longer tail) */}
       <defs>
         <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
           <path d="M0,0 L10,5 L0,10 Z" fill="#3b82f6" />
         </marker>
       </defs>
       {(() => {
-        // Start just outside the callout's top-right corner, angled downward toward the data point
         const startX = x(68) + 6
         const startY = y(76)
         const d = `M ${startX},${startY} L ${x(point.x-2)},${y(point.y-2)}`
@@ -539,27 +478,15 @@ function CRIvsGAI() {
           <path d={d} stroke="#3b82f6" strokeWidth={2.5} strokeDasharray="6 6" strokeLinecap="round" fill="none" markerEnd="url(#arrowBlue)" />
         )
       })()}
-      {/* Callout box */}
-  {/* Callout with extra padding */}
-  <rect x={x(40)} y={y(74)} width={x(68)-x(40)} height={y(50)-y(74)} rx={12} ry={12} fill="#0b0f19" stroke="#3b82f6" opacity={0.95} />
-  <text x={x(54)} y={y(66)} fontSize={12} textAnchor="middle" fill="#e5e7eb">
-        OrbitX
-      </text>
-  <text x={x(54)} y={y(60)} fontSize={12} textAnchor="middle" fill="#e5e7eb">
-        CRI 83, GAI 96
-      </text>
-  <text x={x(54)} y={y(54)} fontSize={12} textAnchor="middle" fill="#e5e7eb">
-        Type A Lighting
-      </text>
+      <rect x={x(40)} y={y(74)} width={x(68)-x(40)} height={y(50)-y(74)} rx={12} ry={12} fill="#0b0f19" stroke="#3b82f6" opacity={0.95} />
+      <text x={x(54)} y={y(66)} fontSize={12} textAnchor="middle" fill="#e5e7eb">OrbitX</text>
+      <text x={x(54)} y={y(60)} fontSize={12} textAnchor="middle" fill="#e5e7eb">CRI 83, GAI 96</text>
+      <text x={x(54)} y={y(54)} fontSize={12} textAnchor="middle" fill="#e5e7eb">Type A Lighting</text>
     </svg>
   )
 }
 
-// 4. Spectral Power Distribution
 function SPD() {
-  // Values shaped to match the provided SPD image: sharp blue peak ~455 nm,
-  // dip near 485 nm, then a broad green/yellow hump peaking ~0.6 around 560–600 nm,
-  // tapering into the red region.
   const data = [
     [360,0.00],[370,0.00],[380,0.00],[390,0.01],[400,0.02],[410,0.05],[420,0.09],[430,0.20],
     [440,0.40],[445,0.70],[452,0.95],[455,1.00],[458,0.92],[465,0.80],[475,0.55],[480,0.38],
@@ -572,7 +499,6 @@ function SPD() {
   const xMin = 360, xMax = 735, yMin = 0, yMax = 1
   const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
   const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
-  // Build a smooth Catmull–Rom spline path for a rounded curve
   const pts = data.map(p => ({ x: x(p.x), y: y(p.y) }))
   function smoothPath(points: {x: number, y: number}[], tension = 0.6) {
     if (points.length < 2) return ''
@@ -596,7 +522,6 @@ function SPD() {
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
       <defs>
-        {/* Horizontal spectrum gradient */}
         <linearGradient id="spdGradient" x1={pad} x2={W - pad} y1={0} y2={0} gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#2a00ff" />
           <stop offset={`${((435-360)/(xMax-xMin))*100}%`} stopColor="#0057ff" />
@@ -609,26 +534,21 @@ function SPD() {
           <stop offset="100%" stopColor="#4b0000" />
         </linearGradient>
       </defs>
-  <Axes W={W} H={H} pad={pad} xLabel="Wavelength (nm)" yLabel="P (relative)" yTicks={[0,0.25,0.5,0.75,1]} xTicks={[360,485,610,735]} />
+      <Axes W={W} H={H} pad={pad} xLabel="Wavelength (nm)" yLabel="P (relative)" yTicks={[0,0.25,0.5,0.75,1]} xTicks={[360,485,610,735]} />
       <path d={areaPath} fill="url(#spdGradient)" opacity={0.95} />
       <path d={linePath} fill="none" stroke="#111" strokeDasharray="5 4" strokeOpacity={0.6} strokeWidth={2} />
     </svg>
   )
 }
 
-// Axes component
 function Axes({ W, H, pad, xLabel, yLabel, xTicks, yTicks }: { W: number, H: number, pad: number, xLabel: string, yLabel: string, xTicks: (number)[], yTicks: (number)[] }) {
   const xMin = pad, xMax = W - pad, yMin = H - pad, yMax = pad
-  // Functions to map back from domain ticks to pixels require domains; for simplicity, infer from labels grid lines evenly spaced
-  // Instead, accept ticks as domain values and compute scale based on min/max provided by ticks
   const sx = (v: number) => scale(v, Math.min(...xTicks), Math.max(...xTicks), xMin, xMax)
   const sy = (v: number) => scale(v, Math.min(...yTicks), Math.max(...yTicks), yMin, yMax)
   return (
     <g>
-      {/* Axes lines */}
       <line x1={xMin} y1={yMin} x2={xMax} y2={yMin} stroke="#444" />
       <line x1={xMin} y1={yMin} x2={xMin} y2={yMax} stroke="#444" />
-      {/* X ticks */}
       {xTicks.map((t, i) => (
         <g key={`xt-${i}`}>
           <line x1={sx(t)} y1={yMin} x2={sx(t)} y2={yMin + 6} stroke="#555" />
@@ -636,7 +556,6 @@ function Axes({ W, H, pad, xLabel, yLabel, xTicks, yTicks }: { W: number, H: num
           <line x1={sx(t)} y1={yMin} x2={sx(t)} y2={yMax} stroke="#222" />
         </g>
       ))}
-      {/* Y ticks */}
       {yTicks.map((t, i) => (
         <g key={`yt-${i}`}>
           <line x1={xMin - 6} y1={sy(t)} x2={xMin} y2={sy(t)} stroke="#555" />
@@ -644,39 +563,8 @@ function Axes({ W, H, pad, xLabel, yLabel, xTicks, yTicks }: { W: number, H: num
           <line x1={xMin} y1={sy(t)} x2={xMax} y2={sy(t)} stroke="#222" />
         </g>
       ))}
-      {/* Labels */}
       <text x={(xMin + xMax) / 2} y={H - 8} textAnchor="middle" fontSize={12} fill="#bbb">{xLabel}</text>
       <text x={12} y={(yMin + yMax) / 2} textAnchor="middle" fontSize={12} fill="#bbb" transform={`rotate(-90 12 ${(yMin + yMax) / 2})`}>{yLabel}</text>
     </g>
-  )
-}
-
-// Dimensions diagram with transparent background overlay
-function DimensionsDiagram({ imageSrc }: { imageSrc: string }) {
-  return (
-    <div className="relative w-full h-[320px] bg-transparent">
-      {/* Product image */}
-      <Image src={imageSrc} alt="Neptune Dimensions" fill className="object-contain p-6" />
-      {/* Transparent overlay SVG for arrows and labels */}
-      <svg viewBox="0 0 900 300" className="absolute inset-0 w-full h-full pointer-events-none">
-        <defs>
-          <marker id="dimArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-            <path d="M0,0 L10,5 L0,10 Z" fill="#ef4444" />
-          </marker>
-        </defs>
-
-        {/* Vertical 92 mm (left) */}
-        <line x1="80" y1="60" x2="80" y2="220" stroke="#ef4444" strokeWidth="3" markerStart="url(#dimArrow)" markerEnd="url(#dimArrow)" />
-        <text x="90" y="145" fill="#ffffff" fontSize="18">92 mm</text>
-
-        {/* Horizontal 92 mm (left) */}
-        <line x1="30" y1="255" x2="170" y2="255" stroke="#ef4444" strokeWidth="3" markerStart="url(#dimArrow)" markerEnd="url(#dimArrow)" />
-        <text x="70" y="245" fill="#ffffff" fontSize="18">92 mm</text>
-
-        {/* Long length arrow with label */}
-        <line x1="180" y1="275" x2="860" y2="275" stroke="#ef4444" strokeWidth="3" markerStart="url(#dimArrow)" markerEnd="url(#dimArrow)" />
-        <text x="520" y="265" textAnchor="middle" fill="#ffffff" fontSize="20">see configurations</text>
-      </svg>
-    </div>
   )
 }
