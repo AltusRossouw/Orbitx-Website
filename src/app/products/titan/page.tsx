@@ -374,16 +374,38 @@ function scale(v: number, d0: number, d1: number, r0: number, r1: number) {
   return r0 + t * (r1 - r0)
 }
 
-// 1) Light Survival Rate Curve (from titan-graphs.md)
+// 1) Light Survival Rate Curve (updated with exact values from chart)
 function TitanSurvivalCurve() {
   const pts = [
-    [0,100],[10,100],[20,100],[30,99],[40,97],[50,92],[60,85],[70,75],[80,62],[90,48],[100,32]
+    [0,100],[5,100],[10,100],[15,100],[20,100],[25,100],[30,100],[35,100],[40,100],[45,100],
+    [50,100],[55,100],[60,100],[65,100],[70,100],[75,99.5],[80,99],[85,97],[90,94],[95,90],[100,85]
   ].map(d => ({ x: d[0], y: d[1] }))
   const W = 520, H = 300, pad = 44
   const xMin = 0, xMax = 100, yMin = 0, yMax = 100
   const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
   const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
-  const path = pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${x(p.x)},${y(p.y)}`).join(' ')
+  
+  // Create smooth curve using bezier curves
+  function smoothPath(points: {x: number, y: number}[], tension = 0.4) {
+    if (points.length < 2) return ''
+    const d: string[] = [`M ${points[0].x},${points[0].y}`]
+    for (let i = 0; i < points.length - 1; i++) {
+      const p0 = points[i - 1] || points[i]
+      const p1 = points[i]
+      const p2 = points[i + 1]
+      const p3 = points[i + 2] || p2
+      const c1x = p1.x + (p2.x - p0.x) / 6 * tension
+      const c1y = p1.y + (p2.y - p0.y) / 6 * tension
+      const c2x = p2.x - (p3.x - p1.x) / 6 * tension
+      const c2y = p2.y - (p3.y - p1.y) / 6 * tension
+      d.push(`C ${c1x},${c1y} ${c2x},${c2y} ${p2.x},${p2.y}`)
+    }
+    return d.join(' ')
+  }
+  
+  const scaledPts = pts.map(p => ({ x: x(p.x), y: y(p.y) }))
+  const path = smoothPath(scaledPts, 0.3)
+  
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
       <Axes W={W} H={H} pad={pad} xLabel="Time (1000 hours)" yLabel="Light Survival (%)" yTicks={[0,20,40,60,80,100]} xTicks={[0,10,20,30,40,50,60,70,80,90,100]} />
@@ -418,57 +440,89 @@ function TitanLumenMaintenance() {
   )
 }
 
-// 3) CRI vs GAI (same values for Titan)
+// 3) CRI vs GAI (updated to match screenshot precisely)
 function CRIvsGAI() {
-  const point = { x: 83, y: 96 }
+  // OrbitX measured values
+  const orbitx = { x: 83, y: 96 }
+  // Callout/arrow target (red ring near the top-right)
+  const ring = { x: 89, y: 92 }
   const W = 520, H = 300, pad = 44
   const xMin = 0, xMax = 100, yMin = 0, yMax = 100
   const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
   const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
-  const band = `M ${x(83)},${y(0)} L ${x(100)},${y(0)} L ${x(100)},${y(100)} L ${x(83)},${y(100)} Z`
+
+  // Type A target shaded bands: top band (GAI ≥ 90) and right band (CRI ≥ 85)
+  const topBand = `M ${x(0)},${y(90)} L ${x(100)},${y(90)} L ${x(100)},${y(100)} L ${x(0)},${y(100)} Z`
+  const rightBand = `M ${x(85)},${y(0)} L ${x(100)},${y(0)} L ${x(100)},${y(100)} L ${x(85)},${y(100)} Z`
+
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
       <Axes W={W} H={H} pad={pad} xLabel="Colour Rendering Index (CRI)" yLabel="Gamut Area Index (GAI)" yTicks={[0,20,40,60,80,100]} xTicks={[0,20,40,60,80,100]} />
-      <path d={band} fill="rgba(0, 122, 255, 0.15)" />
-      <line x1={x(0)} y1={y(96)} x2={x(100)} y2={y(96)} stroke="#9aa0a6" strokeDasharray="6 6" opacity={0.6} />
-      <line x1={x(83)} y1={y(0)} x2={x(83)} y2={y(100)} stroke="#9aa0a6" strokeDasharray="6 6" opacity={0.6} />
-      <circle cx={x(point.x)} cy={y(point.y)} r={7} fill="#111827" stroke="#ff5a5f" strokeWidth={3} />
-      {/* Callout arrow and box */}
+
+      {/* Type A region shading (two bands) */}
+      <path d={topBand} fill="rgba(59,130,246,0.14)" />
+      <path d={rightBand} fill="rgba(59,130,246,0.14)" />
+
+      {/* Reference dashed lines */}
+      <line x1={x(0)} y1={y(95)} x2={x(100)} y2={y(95)} stroke="#111" strokeDasharray="8 6" opacity={0.8} />
+      <line x1={x(85)} y1={y(0)} x2={x(85)} y2={y(100)} stroke="#111" strokeDasharray="8 6" opacity={0.8} />
+
+      {/* Red ring near top-right */}
+      <circle cx={x(ring.x)} cy={y(ring.y)} r={7} fill="none" stroke="#ef4444" strokeWidth={3} />
+
+      {/* Callout box and arrow */}
       <defs>
         <marker id="arrowBlueTitan" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-          <path d="M0,0 L10,5 L0,10 Z" fill="#3b82f6" />
+          <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb" />
         </marker>
       </defs>
+
       {(() => {
-        const startX = x(68) + 6
-        const startY = y(76)
-        const d = `M ${startX},${startY} L ${x(point.x-2)},${y(point.y-2)}`
+        // Callout box similar to screenshot (white with blue border)
+        const boxX = x(22)
+        const boxY = y(72)
+        const boxW = x(52) - x(22)
+        const boxH = y(46) - y(72)
+        const arrowStartX = boxX + boxW
+        const arrowStartY = boxY + boxH * 0.35
+        const arrowEndX = x(ring.x - 1.5)
+        const arrowEndY = y(ring.y + 1.5)
         return (
-          <path d={d} stroke="#3b82f6" strokeWidth={2.5} strokeDasharray="6 6" strokeLinecap="round" fill="none" markerEnd="url(#arrowBlueTitan)" />
+          <>
+            <rect x={boxX} y={boxY} width={boxW} height={boxH} rx={12} ry={12} fill="#ffffff" stroke="#2563eb" strokeWidth={2} opacity={0.98} />
+            <text x={boxX + boxW/2} y={boxY + 20} fontSize={12.5} textAnchor="middle" fill="#111827" fontWeight={600}>OrbitX</text>
+            <text x={boxX + boxW/2} y={boxY + 36} fontSize={12} textAnchor="middle" fill="#111827">CRI 83, GAI 96</text>
+            <text x={boxX + boxW/2} y={boxY + 52} fontSize={12} textAnchor="middle" fill="#111827">Type A Lighting</text>
+
+            {/* Arrow to red ring */}
+            <path d={`M ${arrowStartX},${arrowStartY} L ${arrowEndX},${arrowEndY}`} stroke="#2563eb" strokeWidth={2.5} strokeDasharray="6 6" strokeLinecap="round" fill="none" markerEnd="url(#arrowBlueTitan)" />
+          </>
         )
       })()}
-      <rect x={x(40)} y={y(74)} width={x(68)-x(40)} height={y(50)-y(74)} rx={12} ry={12} fill="#0b0f19" stroke="#3b82f6" opacity={0.95} />
-      <text x={x(54)} y={y(66)} fontSize={12} textAnchor="middle" fill="#e5e7eb">OrbitX</text>
-      <text x={x(54)} y={y(60)} fontSize={12} textAnchor="middle" fill="#e5e7eb">CRI 83, GAI 96</text>
-      <text x={x(54)} y={y(54)} fontSize={12} textAnchor="middle" fill="#e5e7eb">Type A Lighting</text>
     </svg>
   )
 }
 
-// 4) Spectral Power Distribution (adjusted peaks to ~485nm and ~610nm)
+// 4) Spectral Power Distribution (updated to match exact chart)
 function SPDTitan() {
   const data = [
-    [360,0.00],[370,0.00],[380,0.01],[390,0.02],[400,0.04],[410,0.07],[420,0.12],[430,0.22],
-    [440,0.40],[450,0.65],[465,0.85],[480,0.95],[485,1.00],[490,0.95],[500,0.80],[510,0.65],
-    [520,0.55],[530,0.50],[540,0.52],[550,0.56],[565,0.60],[585,0.64],[600,0.66],[610,0.67],
-    [620,0.64],[630,0.58],[640,0.50],[650,0.40],[660,0.30],[670,0.22],[680,0.16],[690,0.12],
-    [700,0.09],[710,0.07],[720,0.05],[730,0.03],[735,0.02]
+    [360,0.00],[370,0.00],[380,0.00],[390,0.00],[400,0.00],[410,0.00],[420,0.00],[430,0.00],
+    [440,0.00],[445,0.02],[450,0.08],[455,0.20],[460,0.40],[465,0.60],[470,0.80],[475,0.90],
+    [480,0.98],[485,1.00],[490,0.95],[495,0.80],[500,0.60],[505,0.45],[510,0.35],[515,0.30],
+    [520,0.28],[525,0.30],[530,0.32],[535,0.35],[540,0.38],[545,0.42],[550,0.46],[555,0.50],
+    [560,0.54],[565,0.58],[570,0.61],[575,0.63],[580,0.64],[585,0.65],[590,0.65],[595,0.65],
+    [600,0.64],[605,0.63],[610,0.62],[615,0.60],[620,0.58],[625,0.55],[630,0.52],[635,0.48],
+    [640,0.44],[645,0.40],[650,0.36],[655,0.32],[660,0.28],[665,0.24],[670,0.20],[675,0.16],
+    [680,0.13],[685,0.10],[690,0.08],[695,0.06],[700,0.04],[705,0.03],[710,0.02],[715,0.02],
+    [720,0.01],[725,0.01],[730,0.00],[735,0.00]
   ].map(d => ({ x: d[0], y: d[1] }))
+  
   const W = 520, H = 300, pad = 44
   const xMin = 360, xMax = 735, yMin = 0, yMax = 1
   const x = (v: number) => scale(v, xMin, xMax, pad, W - pad)
   const y = (v: number) => scale(v, yMin, yMax, H - pad, pad)
   const pts = data.map(p => ({ x: x(p.x), y: y(p.y) }))
+  
   function smoothPath(points: {x: number, y: number}[], tension = 0.6) {
     if (points.length < 2) return ''
     const d: string[] = [`M ${points[0].x},${points[0].y}`]
@@ -485,9 +539,11 @@ function SPDTitan() {
     }
     return d.join(' ')
   }
-  const linePath = smoothPath(pts, 0.6)
+  
+  const linePath = smoothPath(pts, 0.4)
   const first = pts[0], last = pts[pts.length - 1]
   const areaPath = `${linePath} L ${last.x},${y(0)} L ${first.x},${y(0)} Z`
+  
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
       <defs>
