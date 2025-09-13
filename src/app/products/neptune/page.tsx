@@ -184,7 +184,7 @@ export default function NeptuneProductPage() {
             <div className="relative rounded-xl border border-gray-800 bg-black overflow-hidden">
               <div className="relative w-full h-72 md:h-96">
                 <Image
-                  src="/products/neptune/images/Neptune-Dimensions-numbers.png"
+                  src="/products/neptune/images/neptune-dimensions.png"
                   alt="Neptune dimensions"
                   fill
                   className="object-contain"
