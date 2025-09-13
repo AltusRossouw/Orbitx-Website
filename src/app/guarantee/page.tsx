@@ -151,7 +151,7 @@ export default function GuaranteePage() {
                         <div>
                           <p className="text-yellow-200 font-medium mb-1">Important Requirement</p>
                           <p className="text-yellow-100 text-sm">
-                            All guarantee services require your <strong>invoice number</strong> (serves as guarantee number) and the product's <strong>serial number</strong>. Please retain your invoice as no guarantee service will be provided without this information.
+                            All guarantee services require your <strong>invoice number</strong> (serves as guarantee number) and the product&#39;s <strong>serial number</strong>. Please retain your invoice as no guarantee service will be provided without this information.
                           </p>
                         </div>
                       </div>
@@ -251,7 +251,7 @@ export default function GuaranteePage() {
                     <h2 className="text-2xl font-bold mb-4">Service Terms</h2>
                     <div className="space-y-4 text-gray-300">
                       <p className="leading-relaxed">
-                        During the guarantee period, OrbitX will repair or replace defective parts with new or reconditioned parts at OrbitX's option, without charge to the purchaser.
+                        During the guarantee period, OrbitX will repair or replace defective parts with new or reconditioned parts at OrbitX&#39;s option, without charge to the purchaser.
                       </p>
                       <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
                         <h4 className="font-semibold text-blue-300 mb-2">Shipping Policy</h4>

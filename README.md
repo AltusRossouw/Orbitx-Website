@@ -10,8 +10,11 @@ Modern, responsive website for OrbitX LED lighting company built with Next.js 14
 - **SEO Ready**: Open Graph meta tags for social media sharing
 - **TypeScript**: Full type safety throughout the application
 - **Product Showcase**: Complete product catalog with images and specifications
+- **Docker Ready**: Optimized for containerized deployment with Portainer
 
 ## 🚀 Quick Start
+
+### Development
 
 1. **Clone & Install:**
    ```bash
@@ -30,6 +33,25 @@ Modern, responsive website for OrbitX LED lighting company built with Next.js 14
    ```bash
    npm run build
    npm start
+   ```
+
+### 🐳 Portainer Deployment
+
+For production deployment using Portainer:
+
+1. **Quick Start:**
+   ```bash
+   ./scripts/portainer-quickstart.sh
+   ```
+
+2. **Manual Portainer Deployment:**
+   - See [PORTAINER-DEPLOYMENT.md](./PORTAINER-DEPLOYMENT.md) for detailed instructions
+   - Use the included `docker-compose.yml` file
+   - Access on port 3330 by default
+
+3. **Verify Deployment:**
+   ```bash
+   ./scripts/verify-deployment.sh
    ```
 
 ## 📁 Project Structure
@@ -59,6 +81,31 @@ public/
 - **Icons**: Lucide React
 - **Animations**: Framer Motion
 - **Font**: Inter (Google Fonts)
+- **Deployment**: Docker with Portainer support
+
+## 🐳 Docker & Deployment
+
+### Included Files
+- `Dockerfile`: Multi-stage production build
+- `docker-compose.yml`: Complete stack configuration
+- `.env.example`: Environment variable template
+- `PORTAINER-DEPLOYMENT.md`: Detailed deployment guide
+
+### Health Monitoring
+- Health check endpoint: `/api/health`
+- Container health monitoring
+- Resource usage tracking
+- Deployment verification scripts
+
+### Configuration
+```bash
+# Environment variables (see .env.example)
+ORBITX_PORT=3330              # External port
+NODE_ENV=production           # Environment
+CONTAINER_NAME=orbitx-website # Container name
+CPU_LIMIT=1.0                 # CPU cores
+MEMORY_LIMIT=1G               # Memory limit
+```
 
 ## 📱 Website Sections
 

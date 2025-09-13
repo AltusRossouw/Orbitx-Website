@@ -6,11 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
     image: orbitx-website:latest
-    container_name: orbitx-website
+    container_name: ${CONTAINER_NAME:-orbitx-website}
     ports:
-      - "3330:3000"
+      - "${ORBITX_PORT:-3330}:3000"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=${NODE_ENV:-production}
       - NEXT_TELEMETRY_DISABLED=1
       - PORT=3000
       - HOSTNAME=0.0.0.0
@@ -26,19 +26,33 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1.0"
-          memory: 1G
+          cpus: "${CPU_LIMIT:-1.0}"
+          memory: ${MEMORY_LIMIT:-1G}
         reservations:
-          cpus: "0.5"
-          memory: 512M
+          cpus: "${CPU_RESERVATION:-0.5}"
+          memory: ${MEMORY_RESERVATION:-512M}
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=false"
       - "app=orbitx-website"
-      - "environment=production"
+      - "environment=${NODE_ENV:-production}"
+      - "portainer.stack=${COMPOSE_PROJECT_NAME:-orbitx}"
+      - "com.docker.compose.project=${COMPOSE_PROJECT_NAME:-orbitx}"
+      - "description=OrbitX Direct Drive LED Lighting Website"
+      - "version=${VERSION:-latest}"
 
 volumes:
   orbitx_cache:
     driver: local
     labels:
       - "app=orbitx-website"
+      - "environment=${NODE_ENV:-production}"
+      - "portainer.stack=${COMPOSE_PROJECT_NAME:-orbitx}"
+
+# Network configuration for Portainer compatibility
+networks:
+  default:
+    name: ${COMPOSE_PROJECT_NAME:-orbitx}_default
+    labels:
+      - "app=orbitx-website"
+      - "environment=${NODE_ENV:-production}"
