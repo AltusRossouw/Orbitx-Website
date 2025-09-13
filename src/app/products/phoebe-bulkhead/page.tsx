@@ -296,6 +296,7 @@ export default function PhoebeBulkheadProductPage() {
                 <Link href="/#contact" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Contact</Link>
                 <a href={companyAssets.mainBrochure} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Main Brochure</a>
                 <Link href="/guarantee" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Guarantee</Link>
+                <Link href="/sitemap" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Sitemap</Link>
               </div>
             </div>
             <div>

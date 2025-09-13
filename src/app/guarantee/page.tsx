@@ -357,6 +357,7 @@ export default function GuaranteePage() {
                 <Link href="/#about" className="block text-gray-400 hover:text-orbitx-accent transition-colors">About Us</Link>
                 <Link href="/#contact" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Contact</Link>
                 <a href={companyAssets.mainBrochure} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Main Brochure</a>
+                <Link href="/sitemap" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Sitemap</Link>
               </div>
             </div>
             <div>

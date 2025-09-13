@@ -183,6 +183,7 @@ export default function ContactPage() {
                 <a href="/#contact" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Contact</a>
                 <a href={companyAssets.mainBrochure} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Main Brochure</a>
                 <a href="/guarantee" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Guarantee</a>
+                <a href="/sitemap" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Sitemap</a>
               </div>
             </div>
             
