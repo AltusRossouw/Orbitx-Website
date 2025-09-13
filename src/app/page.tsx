@@ -566,16 +566,19 @@ const Footer = () => {
               Leading South African manufacturer of Direct Drive LED lighting solutions 
               for industrial and commercial applications.
             </p>
-            <div className="flex items-center text-sm text-gray-500">
-              <Award size={16} className="mr-2" />
+            <div className="text-sm text-gray-500">
+              <div className="flex items-center">
+                <Award size={16} className="mr-2" />
                 <a
                   href="https://www.sabs.co.za"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-orbitx-accent underline-offset-2 hover:underline"
                 >
-                  SABS Tested
+                  SABS Approved
                 </a>
+              </div>
+              <p className="pl-6 text-xs text-gray-500">Available on request</p>
             </div>
           </div>
           
