@@ -2,8 +2,10 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import Header from '@/components/Header'
 import { companyAssets } from '../../data/products'
+import { Shield, Clock, Wrench, AlertTriangle, FileText, Award } from 'lucide-react'
 
 export default function GuaranteePage() {
   return (
@@ -33,105 +35,339 @@ export default function GuaranteePage() {
             />
           </div>
           <div className="relative z-10 container mx-auto px-6 text-center">
+            <motion.div
+              className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-orbitx-accent/20 border border-orbitx-accent/30 mb-6"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Shield className="w-10 h-10 text-orbitx-accent" />
+            </motion.div>
             <motion.h1 
               className="text-4xl md:text-5xl font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Our Guarantee
-            </motion.h1>
-            <motion.p 
-              className="text-lg text-gray-300 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Direct Drive Guarantee for OrbitX products
+              OrbitX Guarantee
+            </motion.h1>
+            <motion.p 
+              className="text-lg text-gray-300 max-w-3xl mx-auto mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Your assurance of quality and reliability with our Direct Drive LED lighting solutions
             </motion.p>
-          </div>
-        </section>
-
-        {/* Content */}
-        <section className="py-16 bg-black">
-          <div className="container mx-auto px-6 prose prose-invert max-w-4xl">
-            <h2>OrbitX Direct Drive Guarantee</h2>
-            <p>
-              OrbitX provides the following guarantee, which extends to the purchaser of the OrbitX product who purchased directly from OrbitX or from an authorised OrbitX reseller.
-            </p>
-            <p>
-              Please note that any guarantee services or questions must be accompanied by the invoice number from the transaction through which the guaranteed product was purchased and the serial number of the product, as found on the product label. The invoice number serves as your guarantee number and must be retained. OrbitX will offer no guarantee service without this number.
-            </p>
-
-            <h3>Coverage period</h3>
-            <p>OrbitX guarantees that its products and their parts are free of defects in materials or workmanship from the original ship date for the following duration:</p>
-            <ul>
-              <li>OrbitX Direct Drive Neptune and Phoebe Integrated LED Luminaires: 8 years</li>
-              <li>OrbitX Direct Drive Titan, Puck, Rhea and Geminus luminaires, as well as Tube lamps: 6 years</li>
-              <li>OrbitX Integrated LED flood lights: 5 years</li>
-              <li>Luminaires supplied by third parties: as per third party guarantee</li>
-              <li>Battery backup solutions - OrbitX dc to dc converter: 8 years</li>
-              <li>Battery backup solutions - third party dc to dc converter: 5 years</li>
-              <li>Battery backup solutions - lithium battery: 1 year</li>
-            </ul>
-
-            <p>Furthermore, OrbitX guarantees that the total light output per lamp will remain higher or equal to 70% of the light output stated on the original OrbitX invoice for the following duration:</p>
-            <ul>
-              <li>OrbitX Direct Drive Neptune and Phoebe Integrated LED Luminaires: 5 years</li>
-              <li>OrbitX Direct Drive Titan, Puck, Rhea and Geminus luminaires, as well as Tube lamps: 3 years</li>
-              <li>OrbitX Integrated LED flood lights: 3 years</li>
-            </ul>
-
-            <h3>Service</h3>
-            <p>
-              During these periods, OrbitX will repair or replace defective parts with new or reconditioned parts at OrbitX’s option, without charge to the purchaser. Shipping fees incurred from returns for under-guarantee service in the first 60 days will be paid by OrbitX. All shipping fees both to and from OrbitX following this 60-day period must be paid by the customer.
-            </p>
-            <p>
-              All original parts replaced by OrbitX or its authorised service centre become the property of OrbitX. Any after-market additions or modifications will invalidate the OrbitX guarantee. The Purchaser is responsible for the removal and reinstallation of faulty products and the associated costs.
-            </p>
-
-            <h3>Exclusions and limitations</h3>
-            <p>
-              OrbitX makes no other guarantee or warranty, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or conformity to any representation or description, with respect to OrbitX products other than as set forth herein.
-            </p>
-            <p>
-              Except as provided herein, OrbitX is not liable for any loss, cost, expense, inconvenience or damage that may result from use or inability to use an OrbitX product, including, but not limited to, commercial losses, business interruption, injuries and fatalities. Under no circumstances shall OrbitX be liable for any loss, cost, expense, inconvenience or damage exceeding the purchase price paid to OrbitX of the original OrbitX product. In no event shall OrbitX be liable for costs of procurement of substitute goods by the purchaser or for unauthorised repairs undertaken by the purchaser. The guarantee and remedies set forth herein are exclusive and in lieu of all others, oral or written, expressed or implied. No reseller, agent or employee is authorised to make any modification, extension or addition to this guarantee.
-            </p>
-            <p>
-              This guarantee shall not apply to any damages caused as a result of force majeure, misuse or improper use of the products, faulty installation, poor electrical connections or negligence by any party other than OrbitX. In addition, this guarantee is not applicable to any OrbitX product improperly shipped, stored, installed, operated, and used, including, inter alia, shipping, storage, installation, operation and use otherwise than in accordance with one or more of the following: OrbitX specifications, including for maximum operating temperature; installation and operating instructions, wiring diagrams and guidelines; poor or loose connections, or faulty lamp holders.
-            </p>
-            <p>
-              This warranty does not cover any peripheral devices, pc boards or any other components not installed and supplied by OrbitX. OrbitX products are supplied with integrated voltage spike arresting circuitry designed to withstand surges up to 1500V. Despite OrbitX’s best efforts to protect its products against poor electricity supply, the guarantee is invalidated if the electricity supply to the product does not conform to the latest version of NRS048 (available from the SABS) or if the circuit supplying the product does not comply to SABS electrical wiring standards.
-            </p>
-            <p>
-              Damage to the surge arrestor or any other part of the light due to a voltage spike exceeding 1500V is not covered under this guarantee. This will be determined based on visible damage to the MOV that forms part of the surge arrestor.
-            </p>
-            <p>
-              Moreover, this guarantee shall not apply if the unit was subjected to abnormal stresses or operating conditions or the purchaser is in arrears to OrbitX.
-            </p>
-
-            <h3>Governing law</h3>
-            <p>
-              Notwithstanding principles of conflicts of law of any jurisdiction to the contrary, all terms and provisions of this agreement are to be construed and governed according to South African law.
-            </p>
-
-            <div className="mt-10">
+            <motion.div
+              className="flex justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               <Link
                 href={companyAssets.guaranteeDocument}
                 target="_blank"
                 className="inline-flex items-center px-6 py-3 bg-orbitx-accent text-black font-semibold rounded-lg hover:bg-white transition-colors"
               >
-                Download Guarantee (PDF)
+                <FileText className="w-5 h-5 mr-2" />
+                Download Full Guarantee (PDF)
               </Link>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Overview Cards */}
+        <section className="py-16 bg-black">
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              <motion.div 
+                className="bg-gray-900 border border-gray-800 rounded-xl p-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/20 border border-green-500/30 mb-4">
+                  <Clock className="w-8 h-8 text-green-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Up to 8 Years</h3>
+                <p className="text-gray-400">Operational guarantee for Direct Drive LED products</p>
+              </motion.div>
+
+              <motion.div 
+                className="bg-gray-900 border border-gray-800 rounded-xl p-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/20 border border-blue-500/30 mb-4">
+                  <Award className="w-8 h-8 text-blue-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">70% Light Output</h3>
+                <p className="text-gray-400">Guaranteed lumen maintenance for up to 5 years</p>
+              </motion.div>
+
+              <motion.div 
+                className="bg-gray-900 border border-gray-800 rounded-xl p-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orbitx-accent/20 border border-orbitx-accent/30 mb-4">
+                  <Wrench className="w-8 h-8 text-orbitx-accent" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Free Repairs</h3>
+                <p className="text-gray-400">No charge repairs or replacements during guarantee period</p>
+              </motion.div>
+            </div>
+
+            {/* Main Content */}
+            <div className="max-w-4xl mx-auto space-y-12">
+              
+              {/* Introduction */}
+              <motion.div
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-orbitx-accent/20 border border-orbitx-accent/30 flex items-center justify-center">
+                      <Shield className="w-6 h-6 text-orbitx-accent" />
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold mb-4">Guarantee Coverage</h2>
+                    <p className="text-gray-300 leading-relaxed mb-4">
+                      OrbitX provides the following guarantee, which extends to the purchaser of the OrbitX product who purchased directly from OrbitX or from an authorised OrbitX reseller.
+                    </p>
+                    <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+                      <div className="flex items-start gap-3">
+                        <AlertTriangle className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-yellow-200 font-medium mb-1">Important Requirement</p>
+                          <p className="text-yellow-100 text-sm">
+                            All guarantee services require your <strong>invoice number</strong> (serves as guarantee number) and the product's <strong>serial number</strong>. Please retain your invoice as no guarantee service will be provided without this information.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Coverage Periods */}
+              <motion.div
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-green-400" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-2xl font-bold mb-6">Coverage Periods</h2>
+                    
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-lg font-semibold text-orbitx-accent mb-3">Operational Guarantee</h3>
+                        <p className="text-gray-300 mb-4">Products are guaranteed free of defects in materials or workmanship:</p>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="bg-black/30 rounded-lg p-4 border border-gray-700">
+                            <h4 className="font-semibold text-green-400 mb-2">8 Years</h4>
+                            <ul className="text-sm text-gray-300 space-y-1">
+                              <li>• Neptune & Phoebe Integrated LED Luminaires</li>
+                              <li>• Battery backup - OrbitX dc to dc converter</li>
+                            </ul>
+                          </div>
+                          <div className="bg-black/30 rounded-lg p-4 border border-gray-700">
+                            <h4 className="font-semibold text-blue-400 mb-2">6 Years</h4>
+                            <ul className="text-sm text-gray-300 space-y-1">
+                              <li>• Titan, Puck, Rhea & Geminus luminaires</li>
+                              <li>• Tube lamps</li>
+                            </ul>
+                          </div>
+                          <div className="bg-black/30 rounded-lg p-4 border border-gray-700">
+                            <h4 className="font-semibold text-yellow-400 mb-2">5 Years</h4>
+                            <ul className="text-sm text-gray-300 space-y-1">
+                              <li>• Integrated LED flood lights</li>
+                              <li>• Battery backup - 3rd party dc to dc converter</li>
+                            </ul>
+                          </div>
+                          <div className="bg-black/30 rounded-lg p-4 border border-gray-700">
+                            <h4 className="font-semibold text-gray-400 mb-2">1 Year</h4>
+                            <ul className="text-sm text-gray-300 space-y-1">
+                              <li>• Battery backup - lithium battery</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="text-lg font-semibold text-orbitx-accent mb-3">Light Output Guarantee</h3>
+                        <p className="text-gray-300 mb-4">Guaranteed minimum 70% of original light output:</p>
+                        <div className="grid md:grid-cols-3 gap-4">
+                          <div className="bg-black/30 rounded-lg p-4 border border-gray-700">
+                            <h4 className="font-semibold text-green-400 mb-2">5 Years</h4>
+                            <p className="text-sm text-gray-300">Neptune & Phoebe Integrated LED Luminaires</p>
+                          </div>
+                          <div className="bg-black/30 rounded-lg p-4 border border-gray-700">
+                            <h4 className="font-semibold text-blue-400 mb-2">3 Years</h4>
+                            <p className="text-sm text-gray-300">Titan, Puck, Rhea, Geminus & Tube lamps</p>
+                          </div>
+                          <div className="bg-black/30 rounded-lg p-4 border border-gray-700">
+                            <h4 className="font-semibold text-yellow-400 mb-2">3 Years</h4>
+                            <p className="text-sm text-gray-300">Integrated LED flood lights</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Service Details */}
+              <motion.div
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-orbitx-accent/20 border border-orbitx-accent/30 flex items-center justify-center">
+                      <Wrench className="w-6 h-6 text-orbitx-accent" />
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold mb-4">Service Terms</h2>
+                    <div className="space-y-4 text-gray-300">
+                      <p className="leading-relaxed">
+                        During the guarantee period, OrbitX will repair or replace defective parts with new or reconditioned parts at OrbitX's option, without charge to the purchaser.
+                      </p>
+                      <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+                        <h4 className="font-semibold text-blue-300 mb-2">Shipping Policy</h4>
+                        <ul className="text-blue-100 text-sm space-y-1">
+                          <li>• <strong>First 60 days:</strong> OrbitX covers all shipping fees</li>
+                          <li>• <strong>After 60 days:</strong> Customer covers shipping fees both ways</li>
+                        </ul>
+                      </div>
+                      <p className="text-sm">
+                        All original parts replaced become OrbitX property. After-market modifications void the guarantee. Purchaser is responsible for removal/reinstallation costs.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Exclusions */}
+              <motion.div
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-red-500/20 border border-red-500/30 flex items-center justify-center">
+                      <AlertTriangle className="w-6 h-6 text-red-400" />
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold mb-4">Exclusions & Limitations</h2>
+                    <div className="space-y-4">
+                      <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                        <h4 className="font-semibold text-red-300 mb-3">Guarantee Does Not Cover:</h4>
+                        <ul className="text-red-100 text-sm space-y-2">
+                          <li>• Force majeure, misuse, or improper installation</li>
+                          <li>• Poor electrical connections or negligence by other parties</li>
+                          <li>• Non-compliance with OrbitX specifications or NRS048 standards</li>
+                          <li>• Voltage surges exceeding 1500V (visible MOV damage)</li>
+                          <li>• Third-party components not supplied by OrbitX</li>
+                          <li>• Abnormal operating conditions or customer arrears</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-800/50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-300 mb-2">Liability Limitation</h4>
+                        <p className="text-gray-400 text-sm">
+                          OrbitX liability is limited to the original purchase price. No liability for commercial losses, business interruption, or consequential damages.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Governing Law */}
+              <motion.div
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-gray-600/20 border border-gray-600/30 flex items-center justify-center">
+                      <FileText className="w-6 h-6 text-gray-400" />
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold mb-4">Governing Law</h2>
+                    <p className="text-gray-300 leading-relaxed">
+                      All terms and provisions of this guarantee are governed by South African law, regardless of conflicts of law principles of any jurisdiction.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
             </div>
           </div>
         </section>
       </main>
 
-      {/* Simple footer like other internal pages */}
-      <footer className="bg-gray-900 border-t border-gray-800 py-8">
-        <div className="container mx-auto px-6 text-center text-gray-500">
-          © 2025 OrbitX Direct Drive LED Lights. All rights reserved.
+      {/* Footer */}
+      <footer className="bg-gray-900 border-t border-gray-800 py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="mb-4">
+                <Image src="/images/orbitx-logo.svg" alt="OrbitX" width={160} height={48} className="h-10 w-auto" />
+              </div>
+              <p className="text-gray-400 mb-4">Leading South African manufacturer of Direct Drive LED lighting solutions for industrial and commercial applications.</p>
+              <div className="flex items-center text-sm text-gray-500">
+                <Award size={16} className="mr-2" />
+                <a href="https://www.sabs.co.za" target="_blank" rel="noopener noreferrer" className="hover:text-orbitx-accent underline-offset-2 hover:underline">SABS Tested</a>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <div className="space-y-2">
+                <Link href="/products" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Products</Link>
+                <Link href="/#about" className="block text-gray-400 hover:text-orbitx-accent transition-colors">About Us</Link>
+                <Link href="/#contact" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Contact</Link>
+                <a href={companyAssets.mainBrochure} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-orbitx-accent transition-colors">Main Brochure</a>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
+              <div className="space-y-2 text-gray-400">
+                <p><a href="https://maps.app.goo.gl/tWs5EBrKsQ82o4wr5" target="_blank" rel="noopener noreferrer" className="hover:text-orbitx-accent underline-offset-2 hover:underline">13 Suid Street, Southern Paarl</a></p>
+                <p><a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href="mailto:info@orbitx.co.za">info@orbitx.co.za</a></p>
+                <p><a className="hover:text-orbitx-accent underline-offset-2 hover:underline" href="tel:+27218791483">+27 21 879 1483</a></p>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-500">© 2025 OrbitX Direct Drive LED Lights. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>
