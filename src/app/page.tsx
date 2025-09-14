@@ -226,12 +226,13 @@ const About = () => {
   return (
     <section id="about" className="py-20 bg-gray-900 scroll-mt-24 md:scroll-mt-32">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="text-center"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               About 
@@ -261,14 +262,16 @@ const About = () => {
               industrial, commercial, academic, mining and horticultural lighting.
             </p>
             
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-orbitx-accent mb-2">100k+</div>
-                <div className="text-sm text-gray-400">Lights Deployed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-orbitx-accent mb-2">8 Years</div>
-                <div className="text-sm text-gray-400">Guarantee</div>
+            <div className="flex justify-center">
+              <div className="grid grid-cols-2 gap-8 mb-8 max-w-md">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orbitx-accent mb-2">100k+</div>
+                  <div className="text-sm text-gray-400">Lights Deployed</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orbitx-accent mb-2">8 Years</div>
+                  <div className="text-sm text-gray-400">Guarantee</div>
+                </div>
               </div>
             </div>
 
@@ -282,28 +285,101 @@ const About = () => {
               View Our Guarantee <ExternalLink className="ml-2" size={18} />
             </motion.a>
           </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="bg-gradient-to-br from-orbitx-dark-blue to-black p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold mb-4">Some of Our Clients</h3>
-              <div className="space-y-3 text-gray-300">
-                <p>• Rhodes Food Group</p>
-                <p>• Outdoor Warehouse</p>
-                <p>• Agrimark & Stellenpak</p>
-                <p>• Bella Frutta & City Logistics</p>
-                <p>• The Le Roux Group</p>
-                <p>• Stellenbosch University</p>
-                <p>• Cape Town University</p>
-                <p>• Atlantis Foundries</p>
+// Our Clients section with logo grid
+const OurClients = () => {
+  const clientLogos = [
+    {
+      name: "Rhodes Food Group",
+      image: "/images/clients/logos/rhodes-quality.png",
+      alt: "Rhodes Food Group logo"
+    },
+    {
+      name: "Outdoor Warehouse",
+      image: "/images/clients/logos/outdoor-warehouse.png",
+      alt: "Outdoor Warehouse logo"
+    },
+    {
+      name: "Agrimark",
+      image: "/images/clients/logos/agrimark.png",
+      alt: "Agrimark logo"
+    },
+    {
+      name: "Stellenpak",
+      image: "/images/clients/logos/stellenpank.png",
+      alt: "Stellenpak logo"
+    },
+    {
+      name: "City Logistics",
+      image: "/images/clients/logos/city-logistics.png",
+      alt: "City Logistics logo"
+    },
+    {
+      name: "The Le Roux Group",
+      image: "/images/clients/logos/the-leroux-group.png",
+      alt: "The Le Roux Group logo"
+    },
+    {
+      name: "Stellenbosch University",
+      image: "/images/clients/logos/stellenbosch-unoversity.png",
+      alt: "Stellenbosch University logo"
+    },
+    {
+      name: "University of Cape Town",
+      image: "/images/clients/logos/university-of-capetown.png",
+      alt: "University of Cape Town logo"
+    },
+    {
+      name: "Atlantis Foundries",
+      image: "/images/clients/logos/atlantis-foundaries.png",
+      alt: "Atlantis Foundries logo"
+    }
+  ]
+
+  return (
+    <section className="py-20 bg-black">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Our <span className="text-orbitx-accent">Clients</span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Trusted by leading organizations across South Africa for reliable, long-lasting LED lighting solutions.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 items-center justify-items-center">
+          {clientLogos.map((client, index) => (
+            <motion.div
+              key={client.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="relative group w-full"
+            >
+              <div className="bg-white rounded-xl p-4 md:p-6 transition-all duration-300 border border-gray-600 hover:border-orbitx-accent h-24 md:h-28 flex items-center justify-center hover:shadow-lg hover:shadow-orbitx-accent/20">
+                <Image
+                  src={client.image}
+                  alt={client.alt}
+                  width={120}
+                  height={80}
+                  className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -637,6 +713,7 @@ export default function Home() {
         <Features />
   {/* Products moved to /products */}
         <About />
+        <OurClients />
         <ClientShowcase />
   <Videos />
         <Contact />
