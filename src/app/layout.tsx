@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
+import UmamiAnalytics from '@/components/UmamiAnalytics'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
@@ -53,6 +54,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
+  const umamiSrc = process.env.NEXT_PUBLIC_UMAMI_SRC
+
   return (
   <html lang="en" className="dark">
       <head>
@@ -72,6 +76,15 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/images/orbitx-logo.svg" />
       </head>
   <body className={`${inter.className} bg-black text-white`}>
+        {/* Umami Analytics */}
+        {umamiWebsiteId && umamiSrc && (
+          <UmamiAnalytics 
+            websiteId={umamiWebsiteId} 
+            src={umamiSrc} 
+          />
+        )}
+        
+        {/* Custom Analytics Provider */}
         <AnalyticsProvider>
           {children}
         </AnalyticsProvider>
