@@ -2,10 +2,12 @@ version: "3.8"
 
 services:
   orbitx-website:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: orbitx-website:latest
+    # Use pre-built image from Docker Hub
+    image: ${DOCKER_IMAGE:-altusrossouw/orbitx-website:latest}
+    # Uncomment below lines for local building during development
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     container_name: ${CONTAINER_NAME:-orbitx-website}
     ports:
       - "${ORBITX_PORT:-3330}:3000"
