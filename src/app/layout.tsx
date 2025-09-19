@@ -74,9 +74,16 @@ export default function RootLayout({
         {/* Favicon */}
         <link rel="icon" href="/images/orbitx-logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/orbitx-logo.svg" />
+        
+        {/* Umami Analytics - Hardcoded for Docker compatibility */}
+        <script
+          async
+          src="https://umami.intellixlabs.co.za/script.js"
+          data-website-id="1bcbdb6f-8263-4ef0-8a49-340172b88292"
+        />
       </head>
   <body className={`${inter.className} bg-black text-white`}>
-        {/* Umami Analytics */}
+        {/* Backup Umami Analytics - Using environment variables */}
         {umamiWebsiteId && umamiSrc && (
           <UmamiAnalytics 
             websiteId={umamiWebsiteId} 
