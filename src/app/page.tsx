@@ -373,9 +373,15 @@ const OurClients = () => {
                 <Image
                   src={client.image}
                   alt={client.alt}
-                  width={120}
-                  height={80}
-                  className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  width={140}
+                  height={60}
+                  className="w-full h-full object-contain object-center transition-transform duration-300 group-hover:scale-105"
+                  style={{
+                    maxWidth: '140px',
+                    maxHeight: '60px',
+                    minWidth: '80px',
+                    minHeight: '40px'
+                  }}
                 />
               </div>
             </motion.div>
