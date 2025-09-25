@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { products } from '@/data/products'
-import { Home, Box, Info, Phone, Users, FileText, Link as LinkIcon, Layers } from 'lucide-react'
+import { Home, Box, Info, Phone, FileText, Link as LinkIcon, Layers } from 'lucide-react'
 
 const implementedProductIds = new Set([
   'neptune',
@@ -43,7 +43,6 @@ export default function SitemapPage() {
             <h2 className="text-lg font-semibold mb-4 flex items-center"><Info className="w-5 h-5 mr-2 text-orbitx-accent"/>Company</h2>
             <ul className="space-y-2 text-gray-300">
               <li><Link className="hover:text-orbitx-accent" href="/guarantee">Guarantee</Link></li>
-              <li><Link className="hover:text-orbitx-accent" href="/team">Team</Link></li>
             </ul>
           </div>
           <div className="bg-gray-900/60 border border-gray-800 rounded-xl p-6">
@@ -96,13 +95,7 @@ export default function SitemapPage() {
               <li><a className="hover:text-orbitx-accent" href="https://maps.app.goo.gl/tWs5EBrKsQ82o4wr5" target="_blank" rel="noopener noreferrer">13 Suid Street, Southern Paarl</a></li>
             </ul>
           </div>
-          <div className="bg-gray-900/60 border border-gray-800 rounded-xl p-6">
-            <h2 className="text-lg font-semibold mb-4 flex items-center"><Users className="w-5 h-5 mr-2 text-orbitx-accent"/>Teams & People</h2>
-            <ul className="space-y-2 text-gray-300">
-              <li><Link className="hover:text-orbitx-accent" href="/team">Meet the Team</Link></li>
-              <li><Link className="hover:text-orbitx-accent" href="/contact">Contact Page</Link></li>
-            </ul>
-          </div>
+
           <div className="bg-gray-900/60 border border-gray-800 rounded-xl p-6">
             <h2 className="text-lg font-semibold mb-4 flex items-center"><FileText className="w-5 h-5 mr-2 text-orbitx-accent"/>Policies & Docs</h2>
             <ul className="space-y-2 text-gray-300">

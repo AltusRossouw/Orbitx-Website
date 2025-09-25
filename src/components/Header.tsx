@@ -61,7 +61,6 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-white hover:text-orbitx-accent transition-colors">Home</Link>
             <Link href="/products" className="text-white hover:text-orbitx-accent transition-colors">Products</Link>
-            <Link href="/team" className="text-white hover:text-orbitx-accent transition-colors">Team</Link>
             <Link href="/guarantee" className="text-white hover:text-orbitx-accent transition-colors">Guarantee</Link>
             <Link href="/about" className="text-white hover:text-orbitx-accent transition-colors">About</Link>
             <Link href="/contact" className="text-white hover:text-orbitx-accent transition-colors">Contact</Link>
@@ -86,7 +85,6 @@ export default function Header() {
             <div className="flex flex-col">
               <Link href="/" className="block py-2 text-white hover:text-orbitx-accent transition-colors">Home</Link>
               <Link href="/products" className="block py-2 text-white hover:text-orbitx-accent transition-colors">Products</Link>
-              <Link href="/team" className="block py-2 text-white hover:text-orbitx-accent transition-colors">Team</Link>
               <Link href="/guarantee" className="block py-2 text-white hover:text-orbitx-accent transition-colors">Guarantee</Link>
               <Link href="/about" className="block py-2 text-white hover:text-orbitx-accent transition-colors">About</Link>
               <Link href="/contact" className="block py-2 text-white hover:text-orbitx-accent transition-colors">Contact</Link>
