@@ -34,7 +34,7 @@ export default function GuaranteePage() {
               }}
             />
           </div>
-          <div className="relative z-10 container mx-auto px-6 text-center">
+          <div className="relative z-10 max-w-screen-2xl mx-auto px-6 lg:px-12 text-center">
             <motion.div
               className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-orbitx-accent/20 border border-orbitx-accent/30 mb-6"
               initial={{ opacity: 0, scale: 0.5 }}
@@ -79,8 +79,8 @@ export default function GuaranteePage() {
 
         {/* Overview Cards */}
         <section className="py-16 bg-black">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
+            <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
               <motion.div 
                 className="bg-gray-900 border border-gray-800 rounded-xl p-6 text-center"
                 initial={{ opacity: 0, y: 20 }}
@@ -125,23 +125,21 @@ export default function GuaranteePage() {
             </div>
 
             {/* Main Content */}
-            <div className="max-w-4xl mx-auto space-y-12">
+            <div className="space-y-10">
               
               {/* Introduction */}
               <motion.div
-                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8 shadow-lg shadow-blue-500/5 w-full"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg bg-orbitx-accent/20 border border-orbitx-accent/30 flex items-center justify-center">
-                      <Shield className="w-6 h-6 text-orbitx-accent" />
-                    </div>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold mb-4">Guarantee Coverage</h2>
+                 <div className="flex flex-col items-center text-center gap-4">
+                   <div className="w-12 h-12 rounded-lg bg-orbitx-accent/20 border border-orbitx-accent/30 flex items-center justify-center">
+                     <Shield className="w-6 h-6 text-orbitx-accent" />
+                   </div>
+                   <div className="w-full">
+                     <h2 className="text-2xl font-bold mb-4">Guarantee Coverage</h2>
                     <p className="text-gray-300 leading-relaxed mb-4">
                       OrbitX provides the following guarantee, which extends to the purchaser of the OrbitX product who purchased directly from OrbitX or from an authorised OrbitX reseller.
                     </p>
@@ -162,25 +160,23 @@ export default function GuaranteePage() {
 
               {/* Coverage Periods */}
               <motion.div
-                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8 shadow-lg shadow-blue-500/5 w-full"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center">
-                      <Clock className="w-6 h-6 text-green-400" />
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h2 className="text-2xl font-bold mb-6">Coverage Periods</h2>
+                 <div className="flex flex-col items-center text-center gap-4">
+                   <div className="w-12 h-12 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center">
+                     <Clock className="w-6 h-6 text-green-400" />
+                   </div>
+                   <div className="w-full">
+                     <h2 className="text-2xl font-bold mb-6">Coverage Periods</h2>
                     
                     <div className="space-y-6">
                       <div>
                         <h3 className="text-lg font-semibold text-orbitx-accent mb-3">Operational Guarantee</h3>
                         <p className="text-gray-300 mb-4">Products are guaranteed free of defects in materials or workmanship:</p>
-                        <div className="grid md:grid-cols-2 gap-4">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                           <div className="bg-black/30 rounded-lg p-4 border border-gray-700">
                             <h4 className="font-semibold text-green-400 mb-2">8 Years</h4>
                             <ul className="text-sm text-gray-300 space-y-1">
@@ -214,7 +210,7 @@ export default function GuaranteePage() {
                       <div>
                         <h3 className="text-lg font-semibold text-orbitx-accent mb-3">Light Output Guarantee</h3>
                         <p className="text-gray-300 mb-4">Guaranteed minimum 70% of original light output:</p>
-                        <div className="grid md:grid-cols-3 gap-4">
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                           <div className="bg-black/30 rounded-lg p-4 border border-gray-700">
                             <h4 className="font-semibold text-green-400 mb-2">5 Years</h4>
                             <p className="text-sm text-gray-300">Neptune & Phoebe Integrated LED Luminaires</p>
@@ -236,19 +232,17 @@ export default function GuaranteePage() {
 
               {/* Service Details */}
               <motion.div
-                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8 shadow-lg shadow-blue-500/5 w-full"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg bg-orbitx-accent/20 border border-orbitx-accent/30 flex items-center justify-center">
-                      <Wrench className="w-6 h-6 text-orbitx-accent" />
-                    </div>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold mb-4">Service Terms</h2>
+                 <div className="flex flex-col items-center text-center gap-4">
+                   <div className="w-12 h-12 rounded-lg bg-orbitx-accent/20 border border-orbitx-accent/30 flex items-center justify-center">
+                     <Wrench className="w-6 h-6 text-orbitx-accent" />
+                   </div>
+                   <div className="w-full">
+                     <h2 className="text-2xl font-bold mb-4">Service Terms</h2>
                     <div className="space-y-4 text-gray-300">
                       <p className="leading-relaxed">
                         During the guarantee period, OrbitX will repair or replace defective parts with new or reconditioned parts at OrbitX&#39;s option, without charge to the purchaser.
@@ -270,19 +264,17 @@ export default function GuaranteePage() {
 
               {/* Exclusions */}
               <motion.div
-                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8 shadow-lg shadow-blue-500/5 w-full"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg bg-red-500/20 border border-red-500/30 flex items-center justify-center">
-                      <AlertTriangle className="w-6 h-6 text-red-400" />
-                    </div>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold mb-4">Exclusions & Limitations</h2>
+                 <div className="flex flex-col items-center text-center gap-4">
+                   <div className="w-12 h-12 rounded-lg bg-red-500/20 border border-red-500/30 flex items-center justify-center">
+                     <AlertTriangle className="w-6 h-6 text-red-400" />
+                   </div>
+                   <div className="w-full">
+                     <h2 className="text-2xl font-bold mb-4">Exclusions & Limitations</h2>
                     <div className="space-y-4">
                       <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
                         <h4 className="font-semibold text-red-300 mb-3">Guarantee Does Not Cover:</h4>
@@ -308,19 +300,17 @@ export default function GuaranteePage() {
 
               {/* Governing Law */}
               <motion.div
-                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8"
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8 shadow-lg shadow-blue-500/5 w-full"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg bg-gray-600/20 border border-gray-600/30 flex items-center justify-center">
-                      <FileText className="w-6 h-6 text-gray-400" />
-                    </div>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold mb-4">Governing Law</h2>
+                 <div className="flex flex-col items-center text-center gap-4">
+                   <div className="w-12 h-12 rounded-lg bg-gray-600/20 border border-gray-600/30 flex items-center justify-center">
+                     <FileText className="w-6 h-6 text-gray-400" />
+                   </div>
+                   <div className="w-full">
+                     <h2 className="text-2xl font-bold mb-4">Governing Law</h2>
                     <p className="text-gray-300 leading-relaxed">
                       All terms and provisions of this guarantee are governed by South African law, regardless of conflicts of law principles of any jurisdiction.
                     </p>
