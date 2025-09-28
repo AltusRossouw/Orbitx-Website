@@ -7,7 +7,7 @@
 2. Navigate to **Stacks**
 3. Click **"Add stack"**
 
-### Step 2: Configure Stack
+### Step 2: Configure Stac
 1. **Name:** `orbitx-website`
 2. **Build method:** Select **"Web editor"**
 3. **Copy and paste** the configuration below:
