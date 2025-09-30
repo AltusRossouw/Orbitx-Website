@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { 
@@ -34,6 +34,8 @@ const toMapsHref = (address: string) => `https://www.google.com/maps/search/?api
 
 
 const Hero = () => {
+  const shouldReduceMotion = useReducedMotion()
+  
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
@@ -41,32 +43,37 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
         <motion.div 
           className="absolute inset-0 opacity-30"
-          animate={{
+          animate={shouldReduceMotion ? {} : {
             background: [
               "radial-gradient(circle at 20% 50%, #0066cc 0%, transparent 50%)",
               "radial-gradient(circle at 80% 20%, #0084ff 0%, transparent 50%)",
               "radial-gradient(circle at 40% 80%, #0066cc 0%, transparent 50%)"
             ]
           }}
-          transition={{
-            duration: 8,
+          transition={shouldReduceMotion ? {} : {
+            duration: 12,
             repeat: Infinity,
-            repeatType: "reverse"
+            repeatType: "reverse",
+            ease: "linear"
+          }}
+          style={{ 
+            willChange: shouldReduceMotion ? 'auto' : 'background',
+            background: shouldReduceMotion ? "radial-gradient(circle at 50% 50%, #0066cc 0%, transparent 50%)" : undefined
           }}
         />
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={shouldReduceMotion ? {} : { duration: 0.6, ease: "easeOut" }}
         >
           <motion.div className="flex flex-col items-center mb-6">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              transition={shouldReduceMotion ? {} : { duration: 0.6, delay: 0.1, ease: "easeOut" }}
               className="mb-6"
             >
               <Image
@@ -76,6 +83,8 @@ const Hero = () => {
                 height={72}
                 priority
                 className="h-16 md:h-20 w-auto"
+                sizes="(max-width: 768px) 200px, 240px"
+                quality={90}
               />
             </motion.div>
             <motion.h1 
@@ -293,6 +302,7 @@ const About = () => {
 
 // Our Clients section with logo grid
 const OurClients = () => {
+  const shouldReduceMotion = useReducedMotion()
   const clientLogos = [
     {
       name: "Rhodes Food Group",
@@ -372,9 +382,9 @@ const OurClients = () => {
           {clientLogos.map((client, index) => (
             <motion.div
               key={client.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={shouldReduceMotion ? {} : { duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
               viewport={{ once: true }}
               className="relative group w-full"
             >
@@ -386,19 +396,22 @@ const OurClients = () => {
                 aria-label={`Visit ${client.name} website`}
               >
                 <div className="bg-white rounded-xl p-4 md:p-6 transition-all duration-300 border border-gray-600 hover:border-orbitx-accent h-28 md:h-32 flex items-center justify-center hover:shadow-lg hover:shadow-orbitx-accent/20 cursor-pointer">
-                  <Image
-                    src={client.image}
-                    alt={client.alt}
-                    width={160}
-                    height={80}
-                    className="w-full h-full object-contain object-center transition-transform duration-300 group-hover:scale-105"
-                    style={{
-                      maxWidth: '160px',
-                      maxHeight: '80px',
-                      minWidth: '100px',
-                      minHeight: '50px'
-                    }}
-                  />
+                <Image
+                  src={client.image}
+                  alt={client.alt}
+                  width={160}
+                  height={80}
+                  className="w-full h-full object-contain object-center transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 640px) 120px, (max-width: 1024px) 140px, 160px"
+                  quality={85}
+                  loading="lazy"
+                  style={{
+                    maxWidth: '160px',
+                    maxHeight: '80px',
+                    minWidth: '100px',
+                    minHeight: '50px'
+                  }}
+                />
                 </div>
               </a>
             </motion.div>
@@ -410,14 +423,16 @@ const OurClients = () => {
 }
 
 const ClientShowcase = () => {
+  const shouldReduceMotion = useReducedMotion()
+  
   return (
     <section className="py-20 bg-black">
       <div className="container mx-auto px-6">
         <motion.div 
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={shouldReduceMotion ? {} : { duration: 0.4, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -433,11 +448,11 @@ const ClientShowcase = () => {
             <motion.div
               key={index}
               className="relative group rounded-xl overflow-hidden"
-              initial={{ opacity: 0, y: 30 }}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={shouldReduceMotion ? {} : { duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
+              whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
             >
               <Link
                 href={`/installations#${client.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -450,6 +465,9 @@ const ClientShowcase = () => {
                     alt={client.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    quality={85}
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">

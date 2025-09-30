@@ -4,7 +4,12 @@ import './globals.css'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
 import UmamiAnalytics from '@/components/UmamiAnalytics'
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
+const inter = Inter({ 
+  subsets: ['latin'], 
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial']
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://orbitx.co.za'),
@@ -60,6 +65,12 @@ export default function RootLayout({
   return (
   <html lang="en" className="dark">
       <head>
+        {/* Performance optimizations */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="//umami.intellixlabs.co.za" />
+        <link rel="preload" href="/images/orbitx-logo.svg" as="image" type="image/svg+xml" />
+        
         {/* Additional meta tags for better WhatsApp sharing */}
         <meta property="og:image" content="/images/orbitx-social.png" />
         <meta property="og:image:type" content="image/png" />

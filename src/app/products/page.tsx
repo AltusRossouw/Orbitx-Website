@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ExternalLink, Award } from 'lucide-react'
@@ -16,6 +16,8 @@ const toTelHref = (display: string) => {
 
 
 export default function ProductsPage() {
+  const shouldReduceMotion = useReducedMotion()
+  
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
@@ -28,34 +30,43 @@ export default function ProductsPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
             <motion.div 
               className="absolute inset-0 opacity-30"
-              animate={{
+              initial={{ 
+                background: shouldReduceMotion 
+                  ? "radial-gradient(circle at 50% 50%, #0066cc 0%, transparent 50%)" 
+                  : "radial-gradient(circle at 20% 50%, #0066cc 0%, transparent 50%)"
+              }}
+              animate={shouldReduceMotion ? {} : {
                 background: [
                   "radial-gradient(circle at 20% 50%, #0066cc 0%, transparent 50%)",
                   "radial-gradient(circle at 80% 20%, #0084ff 0%, transparent 50%)",
                   "radial-gradient(circle at 40% 80%, #0066cc 0%, transparent 50%)"
                 ]
               }}
-              transition={{
-                duration: 8,
+              transition={shouldReduceMotion ? {} : {
+                duration: 12,
                 repeat: Infinity,
-                repeatType: "reverse"
+                repeatType: "reverse",
+                ease: "linear"
+              }}
+              style={{ 
+                willChange: shouldReduceMotion ? 'auto' : 'background'
               }}
             />
           </div>
           <div className="relative z-10 container mx-auto px-6 text-center">
             <motion.h1 
               className="text-4xl md:text-5xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={shouldReduceMotion ? {} : { duration: 0.6, ease: "easeOut" }}
             >
               Our Products
             </motion.h1>
             <motion.p 
               className="text-lg text-gray-300 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={shouldReduceMotion ? {} : { duration: 0.6, delay: 0.1, ease: "easeOut" }}
             >
               Explore our industrial-grade Direct Drive LED range. Download full specifications for each product.
             </motion.p>
@@ -73,11 +84,11 @@ export default function ProductsPage() {
                   <motion.div
                     key={product.id}
                     className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-orbitx-accent transition-all duration-300 group"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    whileHover={{ y: -4 }}
+                    transition={shouldReduceMotion ? {} : { duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
+                    whileHover={shouldReduceMotion ? {} : { y: -4 }}
                   >
                     <div className="h-48 relative bg-gradient-to-br from-gray-800 to-gray-900">
                       <Image
@@ -85,6 +96,9 @@ export default function ProductsPage() {
                         alt={product.name}
                         fill
                         className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        quality={85}
+                        loading="lazy"
                       />
                     </div>
                     <div className="p-6">
@@ -97,7 +111,7 @@ export default function ProductsPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-orbitx-accent hover:text-white transition-colors font-medium flex items-center group"
-                          whileHover={{ x: 4 }}
+                          whileHover={shouldReduceMotion ? {} : { x: 4 }}
                           onClick={(e) => { e.stopPropagation() }}
                         >
                           View Specs <ExternalLink size={16} className="ml-1" />
@@ -127,9 +141,10 @@ export default function ProductsPage() {
         <section className="py-16 bg-gray-900">
           <div className="container mx-auto px-6 text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={shouldReduceMotion ? {} : { duration: 0.4, ease: "easeOut" }}
             >
               <p className="text-gray-300 mb-6">Need help choosing? Download our brochure or contact us.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -137,16 +152,16 @@ export default function ProductsPage() {
                   href={companyAssets.mainBrochure}
                   target="_blank"
                   className="px-6 py-3 bg-orbitx-accent text-black font-semibold rounded-lg hover:bg-white transition"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
                 >
                   Download Brochure
                 </motion.a>
                 <motion.a 
                   href="/#contact"
                   className="px-6 py-3 border border-orbitx-accent text-orbitx-accent rounded-lg hover:bg-orbitx-accent hover:text-black transition"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
                 >
                   Contact Us
                 </motion.a>
