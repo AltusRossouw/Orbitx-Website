@@ -297,47 +297,56 @@ const OurClients = () => {
     {
       name: "Rhodes Food Group",
       image: "/images/clients/logos/rhodes-quality.png",
-      alt: "Rhodes Food Group logo"
+      alt: "Rhodes Food Group logo",
+      url: "https://rhodesquality.com"
     },
     {
       name: "Outdoor Warehouse",
       image: "/images/clients/logos/outdoor-warehouse.png",
-      alt: "Outdoor Warehouse logo"
+      alt: "Outdoor Warehouse logo",
+      url: "https://www.outdoorwarehouse.co.za"
     },
     {
       name: "Agrimark",
       image: "/images/clients/logos/agrimark.png",
-      alt: "Agrimark logo"
+      alt: "Agrimark logo",
+      url: "https://www.agrimark.co.za"
     },
     {
       name: "Stellenpak",
       image: "/images/clients/logos/stellenpank.png",
-      alt: "Stellenpak logo"
+      alt: "Stellenpak logo",
+      url: "https://www.maf-roda.com/en/page/stellenpak-south-africa.php"
     },
     {
       name: "City Logistics",
       image: "/images/clients/logos/city-logistics.png",
-      alt: "City Logistics logo"
+      alt: "City Logistics logo",
+      url: "https://citylogistics.co.za"
     },
     {
       name: "The Le Roux Group",
       image: "/images/clients/logos/the-leroux-group.png",
-      alt: "The Le Roux Group logo"
+      alt: "The Le Roux Group logo",
+      url: "https://lerouxgroup.co.za"
     },
     {
       name: "Stellenbosch University",
       image: "/images/clients/logos/stellenbosch-unoversity.png",
-      alt: "Stellenbosch University logo"
+      alt: "Stellenbosch University logo",
+      url: "https://www.sun.ac.za/english?post=@twitterurl%3F4=@mailurl"
     },
     {
       name: "University of Cape Town",
       image: "/images/clients/logos/university-of-capetown.png",
-      alt: "University of Cape Town logo"
+      alt: "University of Cape Town logo",
+      url: "https://www.uct.ac.za"
     },
     {
       name: "Atlantis Foundries",
       image: "/images/clients/logos/atlantis-foundaries.png",
-      alt: "Atlantis Foundries logo"
+      alt: "Atlantis Foundries logo",
+      url: "https://castingssa.com/atlantis-foundries-40-years-of-history/"
     }
   ]
 
@@ -369,21 +378,29 @@ const OurClients = () => {
               viewport={{ once: true }}
               className="relative group w-full"
             >
-              <div className="bg-white rounded-xl p-4 md:p-6 transition-all duration-300 border border-gray-600 hover:border-orbitx-accent h-24 md:h-28 flex items-center justify-center hover:shadow-lg hover:shadow-orbitx-accent/20">
-                <Image
-                  src={client.image}
-                  alt={client.alt}
-                  width={140}
-                  height={60}
-                  className="w-full h-full object-contain object-center transition-transform duration-300 group-hover:scale-105"
-                  style={{
-                    maxWidth: '140px',
-                    maxHeight: '60px',
-                    minWidth: '80px',
-                    minHeight: '40px'
-                  }}
-                />
-              </div>
+              <a
+                href={client.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full"
+                aria-label={`Visit ${client.name} website`}
+              >
+                <div className="bg-white rounded-xl p-4 md:p-6 transition-all duration-300 border border-gray-600 hover:border-orbitx-accent h-28 md:h-32 flex items-center justify-center hover:shadow-lg hover:shadow-orbitx-accent/20 cursor-pointer">
+                  <Image
+                    src={client.image}
+                    alt={client.alt}
+                    width={160}
+                    height={80}
+                    className="w-full h-full object-contain object-center transition-transform duration-300 group-hover:scale-105"
+                    style={{
+                      maxWidth: '160px',
+                      maxHeight: '80px',
+                      minWidth: '100px',
+                      minHeight: '50px'
+                    }}
+                  />
+                </div>
+              </a>
             </motion.div>
           ))}
         </div>
