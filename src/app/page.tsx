@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { 
   ArrowRight, 
   Lightbulb, 
@@ -19,7 +20,12 @@ import {
   ExternalLink
 } from 'lucide-react'
 import { clientImages, companyAssets } from '../data/products'
-import Header from '@/components/Header'
+
+// Lazy load non-critical components
+const Header = dynamic(() => import('@/components/Header'), {
+  ssr: true,
+  loading: () => <div className="h-16 bg-black" />
+})
 
 // Components
 // Helper to convert SA numbers like "021 879 1483" or "071 581 5751" to tel:+27... format

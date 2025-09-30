@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - OrbitX LED Lights</title>
+    <meta name="description" content="You're currently offline. Some features may not be available.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        p {
+            font-size: 1.125rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/images/orbitx-logo.svg" alt="OrbitX Logo" class="logo">
+        
+        <h1>You're Offline</h1>
+        
+        <p>
+            It looks like you're not connected to the internet. Some features of our website may not be available right now.
+        </p>
+        
+        <button class="btn" onclick="window.location.reload()">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="btnText">Try Again</span>
+        </button>
+        
+        <div class="status" id="status">
+            <div>Connection Status: <span id="connectionStatus">Checking...</span></div>
+            <div>Last Updated: <span id="lastUpdated">Never</span></div>
+        </div>
+    </div>
+
+    <script>
+        // Check connection status
+        function updateConnectionStatus() {
+            const statusElement = document.getElementById('connectionStatus');
+            const lastUpdatedElement = document.getElementById('lastUpdated');
+            const btnText = document.getElementById('btnText');
+            const spinner = document.getElementById('spinner');
+            
+            if (navigator.onLine) {
+                statusElement.textContent = 'Online';
+                statusElement.style.color = '#10b981';
+                btnText.textContent = 'Go to Homepage';
+                spinner.classList.add('hidden');
+                
+                // Auto-redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } else {
+                statusElement.textContent = 'Offline';
+                statusElement.style.color = '#ef4444';
+                btnText.textContent = 'Try Again';
+                spinner.classList.add('hidden');
+            }
+            
+            lastUpdatedElement.textContent = new Date().toLocaleTimeString();
+        }
+        
+        // Listen for online/offline events
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+        
+        // Initial check
+        updateConnectionStatus();
+        
+        // Check every 5 seconds
+        setInterval(updateConnectionStatus, 5000);
+        
+        // Handle retry button
+        document.querySelector('.btn').addEventListener('click', function() {
+            const spinner = document.getElementById('spinner');
+            const btnText = document.getElementById('btnText');
+            
+            spinner.classList.remove('hidden');
+            btnText.textContent = 'Checking...';
+            
+            // Simulate check delay
+            setTimeout(() => {
+                if (navigator.onLine) {
+                    window.location.href = '/';
+                } else {
+                    spinner.classList.add('hidden');
+                    btnText.textContent = 'Try Again';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
