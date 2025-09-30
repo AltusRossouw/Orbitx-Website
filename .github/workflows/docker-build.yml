@@ -1,12 +1,17 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches: [ main ]
-    tags: [ 'v*' ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v1.0.0)'
+        required: true
+        default: 'latest'
+      push_to_registry:
+        description: 'Push to Docker Hub'
+        required: true
+        default: true
+        type: boolean
 
 env:
   REGISTRY: docker.io
@@ -27,7 +32,7 @@ jobs:
       uses: docker/setup-buildx-action@v3
 
     - name: Log in to Docker Hub
-      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+      if: ${{ inputs.push_to_registry == 'true' }}
       uses: docker/login-action@v3
       with:
         registry: ${{ env.REGISTRY }}
@@ -40,12 +45,8 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=semver,pattern={{major}}
-          type=raw,value=latest,enable={{is_default_branch}}
+          type=raw,value=${{ inputs.version }}
+          type=raw,value=latest,enable=${{ inputs.version == 'latest' }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
@@ -53,14 +54,14 @@ jobs:
         context: .
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64
-        push: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') }}
+        push: ${{ inputs.push_to_registry == 'true' }}
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
     - name: Update Docker Hub description
-      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+      if: ${{ inputs.push_to_registry == 'true' }}
       uses: peter-evans/dockerhub-description@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
